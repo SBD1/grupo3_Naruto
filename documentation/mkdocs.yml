@@ -1,0 +1,18 @@
+site_name: Naruto Grupo 3
+
+theme:
+  name: material
+  logo: images/naruto_logo_small.png
+  palette:
+    primary: "deep orange"
+    accent: "deep purple"
+  features:
+    - tabs
+    - navigation.section
+
+nav:
+  - "Home": "index.md"
+  - "Políticas de Contribuição": "policies.md"
+  # Siga este exemplo para navegação com dropdown
+  # - "Entidades Inicias"
+  #   - "Entidade X": flkhfkjlhjkf

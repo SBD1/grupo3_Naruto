@@ -1,0 +1,17 @@
+name: github-pages update
+
+on:
+  push:
+    branches: [ main ]
+jobs:
+  install_pipenv_refs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with: 
+          python-version: 3.9
+      - run: pip install mkdocs mkdocs-material 
+      - name: Deploy mkDocs
+        working-directory: ./documentation
+        run: mkdocs gh-deploy --force
