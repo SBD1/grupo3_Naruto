@@ -1,0 +1,13 @@
+site_name: BD1 Naruto
+
+theme:
+  name: material
+  palette:
+    primary: "deep orange"
+    accent: "deep purple"
+  features:
+    - tabs
+    - navigation.section
+
+nav:
+  - "Home": "index.md"
