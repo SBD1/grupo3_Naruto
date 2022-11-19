@@ -9,11 +9,10 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: ./documentation/mkdocs.yml
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
         with:
           python-version: 3.9
       - run: pip install mkdocs mkdocs-material 
-      - run: cd 
+      - run: cd documentation
       - run: mkdocs gh-deploy --force
