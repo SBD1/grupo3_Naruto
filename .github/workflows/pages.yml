@@ -11,13 +11,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
-        with:
+        with: 
           python-version: 3.9
       - run: pip install mkdocs mkdocs-material 
-      - run: cd documentation
-      - run: mkdocs gh-deploy --force
-  deploy_mkdocs:
-    runs-on: ubuntu-latest
-    needs: install_pipenv_refs
-    steps:
-      - run: mkdocs gh-deploy --force
+      - name: Deploy mkDocs
+        working-directory: ./documentation
+        run: mkdocs gh-deploy --force
