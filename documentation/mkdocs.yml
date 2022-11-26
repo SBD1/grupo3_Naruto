@@ -13,6 +13,7 @@ theme:
 nav:
   - "Home": "index.md"
   - "Políticas de Contribuição": "policies.md"
+  - "Dicionario de Dados": "Dicionariodedados.md"
   # Siga este exemplo para navegação com dropdown
   # - "Entidades Inicias"
   #   - "Entidade X": flkhfkjlhjkf
