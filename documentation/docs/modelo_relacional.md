@@ -6,8 +6,8 @@ Este documento tem como objetivo representar os dados da aplicação, em formato
 
 ## Versão 1.0
 
-[![Imagem de capa](./images/modelo-relacional-1.0.jpg)](./images/modelo-relacional-1.0.jpg)
-[Clique aqui ou na imagem para ver o modelo relacional com mais detalhes](./images/modelo-relacional-1.0.jpg)
+[![Imagem de capa](./images/ModeloRelacional1.1.jpg)](./images/ModeloRelacional1.1.jpg)
+[Clique aqui ou na imagem para ver o modelo relacional com mais detalhes](./images/ModeloRelacional1.1.jpg)
 
 ## Histórico de versões
 
