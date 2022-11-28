@@ -8,11 +8,19 @@ O DER (Diagrama Entidade-Relacionamento) é utilizado para representar em forma 
 
 ## Diagrama Entidade-Relacionamento
 
+### Versão 1.0
+
 [![DER Versão 1.0](./images/diagrama-entidade-relacionamento-v1.png)](./images/diagrama-entidade-relacionamento-v1.png)
 [Clique aqui ou na imagem para ver o DER com mais detalhes](./images/diagrama-entidade-relacionamento-v1.png)
+
+### Versão 2.0
+
+[![DER Versão 2.0](./images/diagrama-entidade-relacionamento-v2.png)](./images/diagrama-entidade-relacionamento-v2.png)
+[Clique aqui ou na imagem para ver o DER com mais detalhes](./images/diagrama-entidade-relacionamento-v2.png)
 
 ## Histórico de versões
 
 |    Data    | Versão |          Descrição           |        Autor         |
 | :--------: | :----: | :--------------------------: | :------------------: |
 | 28/11/2022 | `1.0`  | Criação da versão 1.0 do DER | Todos os integrantes |
+| 28/11/2022 | `2.0`  | Atualização do DER para versão 2.0 | João Coelho |
