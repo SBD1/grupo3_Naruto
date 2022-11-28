@@ -13,6 +13,7 @@ theme:
 nav:
   - "Home": "index.md"
   - "Políticas de Contribuição": "policies.md"
+  - "Modelo Relacional": "modelo_relacional.md"
   # Siga este exemplo para navegação com dropdown
   # - "Entidades Inicias"
   #   - "Entidade X": flkhfkjlhjkf
