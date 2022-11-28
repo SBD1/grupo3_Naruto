@@ -21,6 +21,7 @@ formado pela junção de **Regiões**
 | nome(string) | tamanho(int) | descricao(string) |
 | :-: | :-: | :-: |
 Vila Oculta da Folha|
+
 ### 2.2. Regiao
 
 Partes do Mapa onde contém **items , PersonagemPrincipal e Inimigo**
@@ -63,25 +64,29 @@ NPC responsável por entregar **Missão** para um  **PersonagemPrincipal**
 
 Guarda os **Items**
 
-| id_inventario(int)| quantidade(int) | item(FK) | Atacante(FK) |
+| id_inventario(int)| quantidade(int) |  | Atacante(FK) |
 | :-: | :-: | :-: | :-:  |
+| 12345| 10 | 1 |
 
 ### 2.7. Item
 
 Item que pode ser utilizado para uma finalidade específica
 
-| nome(string) | Descricao(string) | Desaperece(boolean) |
-| :-: | :-: | :-: |
+| nome(string) | Descricao(string) | Desaperece(boolean) |tipo_item(string)
+| :-: | :-: | :-: | :-: |
+| Kunai| Arma ninja de lâmina curta | True |Ataque|
 
 ### 2.8. Missão
-
-| titulo(string) | Descricao(string) | experienciaganha(boolean) | requisitos(FK)|
-| :-: | :-: | :-: | :-: |
-
 Ações executadas pelo **PersonagemPrincipal**
+
+| titulo(string) | Descricao(string) | experienciaganha(int) | Requisitos(int)|
+| :-: | :-: | :-: | :-: |
+| Matar sasori | Encontrar e matar sasori para prosseguir na procura pelo lider da Akatsuki  | 150 | 10|
+
 
 
 ## Histórico de versão
 | Versão | Data | Descrição | Autor |
 | :----: | :--: | :-------: | :---: 
-|1.0 | 26/11/2022 | Criação da página | Lucas Lopes | Caio Vitor Carneiro |
+|1.0 | 26/11/2022 | Criação da página | Caio Vitor |
+|1.0 | 26/11/2022 | Correções de portugues e pequenas adições | João Coelho |
