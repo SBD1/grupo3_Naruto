@@ -74,14 +74,14 @@ Item que pode ser utilizado para uma finalidade específica
 
 | nome(string) | Descricao(string) | Desaperece(boolean) |tipo_item(string)
 | :-: | :-: | :-: | :-: |
-| kunai| arma ninja | True |Ataque|
+| Kunai| Arma ninja de lâmina curta | True |Ataque|
 
 ### 2.8. Missão
 Ações executadas pelo **PersonagemPrincipal**
 
 | titulo(string) | Descricao(string) | experienciaganha(int) | Requisitos(int)|
 | :-: | :-: | :-: | :-: |
-| mata sasori | mata sasori  | 150 | 10|
+| Matar sasori | Encontrar e matar sasori para prosseguir na procura pelo lider da Akatsuki  | 150 | 10|
 
 
 
@@ -89,3 +89,4 @@ Ações executadas pelo **PersonagemPrincipal**
 | Versão | Data | Descrição | Autor |
 | :----: | :--: | :-------: | :---: 
 |1.0 | 26/11/2022 | Criação da página | Caio Vitor |
+|1.0 | 26/11/2022 | Correções de portugues e pequenas adições | João Coelho |
