@@ -6,21 +6,18 @@ O MER (Modelo Entidade Relacionamento) é utilizado para descrever os objetos do
 
 O DER (Diagrama Entidade-Relacionamento) é utilizado para representar em forma gráfica o que foi descrito no MER (Modelo Entidade Relacionamento).
 
-## Diagrama Entidade-Relacionamento
-
-### Versão 1.0
-
-[![DER Versão 1.0](./images/diagrama-entidade-relacionamento-v1.png)](./images/diagrama-entidade-relacionamento-v1.png)
-[Clique aqui ou na imagem para ver o DER com mais detalhes](./images/diagrama-entidade-relacionamento-v1.png)
-
-### Versão 2.0
+## Diagrama Entidade-Relacionamento (Versão v2.0)
 
 [![DER Versão 2.0](./images/diagrama-entidade-relacionamento-v2.png)](./images/diagrama-entidade-relacionamento-v2.png)
 [Clique aqui ou na imagem para ver o DER com mais detalhes](./images/diagrama-entidade-relacionamento-v2.png)
 
+### Versão v1.0
+
+![DER v1.0](./images/diagrama-entidade-relacionamento-v1.png)
+
 ## Histórico de versões
 
-|    Data    | Versão |          Descrição           |        Autor         |
-| :--------: | :----: | :--------------------------: | :------------------: |
-| 28/11/2022 | `1.0`  | Criação da versão 1.0 do DER | Todos os integrantes |
-| 28/11/2022 | `2.0`  | Atualização do DER para versão 2.0 | João Coelho |
+|    Data    | Versão |             Descrição              |        Autor         |
+| :--------: | :----: | :--------------------------------: | :------------------: |
+| 28/11/2022 | `1.0`  |    Criação da versão 1.0 do DER    | Todos os integrantes |
+| 28/11/2022 | `2.0`  | Atualização do DER para versão 2.0 |     João Coelho      |
