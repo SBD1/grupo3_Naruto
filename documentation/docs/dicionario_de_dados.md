@@ -55,25 +55,25 @@ Oponente que ataca o **PersonagemPrincipal**
 | 3 | Kakazu | 30 | 800 | 8000 |
 | 4 | Itachi | 40 | 1000 | 10000 |
 
-### 2.8. Entregadores de missão
+### 2.5. Entregadores de missão
 
 NPC responsável por entregar **Missão** para um  **PersonagemPrincipal**
 
-### 2.5. Inventário
+### 2.6. Inventário
 
 Guarda os **Items**
 
 | id_inventario(int)| quantidade(int) | item(FK) | Atacante(FK) |
 | :-: | :-: | :-: | :-:  |
 
-### 2.6. Item
+### 2.7. Item
 
 Item que pode ser utilizado para uma finalidade específica
 
 | nome(string) | Descricao(string) | Desaperece(boolean) |
 | :-: | :-: | :-: |
 
-### 2.7. Missão
+### 2.8. Missão
 
 | titulo(string) | Descricao(string) | experienciaganha(boolean) | requisitos(FK)|
 | :-: | :-: | :-: | :-: |
