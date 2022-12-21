@@ -20,7 +20,7 @@ formado pela junção de **Regiões**
 
 | nome(string) | tamanho(int) | descricao(string) |
 | :-: | :-: | :-: |
-Vila Oculta da Folha|
+Vila Oculta da Folha|8|vila do Naruto
 
 ### 2.2. Regiao
 
@@ -41,9 +41,9 @@ Partes do Mapa onde contém **items , PersonagemPrincipal e Inimigo**
 
 Personagem responsável por realizar ações definidas pelo usuario
 
-| ID(int) | Nome(string) | Nível(int) | Dano(int) | Vida(int) |
-| :-: | :-: | :-: | :-:  | :-: |
-| 1 | Naruto | 1 | 200 | 1000 |
+| nome_atacante(string) | Nível(int) | Dano(int) | Vida(int) |
+| :-: | :-: | :-: | :-:  |
+| Naruto | 1 | 200 | 1000 |
 
 ### 2.4. Inimigo
 
@@ -58,35 +58,36 @@ Oponente que ataca o **PersonagemPrincipal**
 
 ### 2.5. Entregadores de missão
 
-NPC responsável por entregar **Missão** para um  **PersonagemPrincipal**
+| nome_entregador(string)|
+| :-: |
+| Kakashi |
 
 ### 2.6. Inventário
 
 Guarda os **Items**
 
-| id_inventario(int)| quantidade(int) |  | Atacante(FK) |
-| :-: | :-: | :-: | :-:  |
-| 12345| 10 | 1 |
+| id_inventario(int)| quantidade(int)| Atacante(FK) |
+| :-: | :-: | :-: |
+| 4 | 3 | Naruto |
 
 ### 2.7. Item
 
 Item que pode ser utilizado para uma finalidade específica
 
-| nome(string) | Descricao(string) | Desaperece(boolean) |tipo_item(string)
-| :-: | :-: | :-: | :-: |
-| Kunai| Arma ninja de lâmina curta | True |Ataque|
+| nome(string) | Descricao(string) | Desaperece(boolean) |
+| :-: | :-: | :-: |
+| kuna | arma ninja | True |
 
 ### 2.8. Missão
+
 Ações executadas pelo **PersonagemPrincipal**
 
-| titulo(string) | Descricao(string) | experienciaganha(int) | Requisitos(int)|
+| titulo(string) | Descricao(string) | experienciaganha(boolean) | nível(FK)|
 | :-: | :-: | :-: | :-: |
-| Matar sasori | Encontrar e matar sasori para prosseguir na procura pelo lider da Akatsuki  | 150 | 10|
-
+| matar Hidan | pegar a chave do Sasori e matar o Hidan  | 100 | 10 |
 
 
 ## Histórico de versão
 | Versão | Data | Descrição | Autor |
 | :----: | :--: | :-------: | :---: 
-|1.0 | 26/11/2022 | Criação da página | Caio Vitor |
-|1.0 | 26/11/2022 | Correções de portugues e pequenas adições | João Coelho |
+|1.0 | 26/11/2022 | Criação da página | Caio Vitor Carneiro |
