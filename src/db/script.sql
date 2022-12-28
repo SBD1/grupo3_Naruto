@@ -1,14 +1,15 @@
 CREATE DATABASE naruto;
 
-CREATE TYPE tipo_personagem('atacante', 'entregador_de_missao');
-CREATE TYPE tipo_item('cura', 'ataque', 'defesa', 'chakra');
+CREATE TYPE tipo_personagem as enum ('atacante', 'entregador_de_missao');
+CREATE TYPE tipo_item as enum ('cura', 'ataque', 'defesa', 'chakra');
+CREATE TYPE tipo_missao as enum ('primaria', 'secundaria', 'treinamentor');
 
 CREATE TABLE IF NOT EXISTS mapa(
   nome CHAR(20),
   /*tamanho*/ 
   descricao VARCHAR(100),
 
-  CONSTRAINT PRIMARY KEY(nome)
+  CONSTRAINT mapa_fk PRIMARY KEY(nome)
 );
 
 CREATE TABLE IF NOT EXISTS regiao(
@@ -19,7 +20,7 @@ CREATE TABLE IF NOT EXISTS regiao(
   /*longitude*/
 
   CONSTRAINT regiao_pk PRIMARY KEY(nome),
-  CONSTRAINT regiao_mapa_fk FOREIGN KEY (nome_mapa) REFERENCES mapa (nome_mapa)
+  CONSTRAINT regiao_mapa_fk FOREIGN KEY (nome_mapa) REFERENCES mapa (nome)
 );
 
 CREATE TABLE IF NOT EXISTS item(
@@ -35,9 +36,9 @@ CREATE TABLE IF NOT EXISTS cura(
   nome_item CHAR(20),
   quantidade SMALLINT,
 
-  CONSTRAINT cura_pk PRIMARY KEY(nome_item)
+  CONSTRAINT cura_pk PRIMARY KEY(nome_item),
   CONSTRAINT cura_item_fk FOREIGN KEY (nome_item) REFERENCES item (nome),
-  CONSTRAINT quantidade_cura_ck CHECK((quantidade_cura >= 0) AND (quantidade_cura <= 100))
+  CONSTRAINT quantidade_cura_ck CHECK((quantidade >= 0) AND (quantidade <= 100))
 );
 
 CREATE TABLE IF NOT EXISTS ataque(
@@ -46,16 +47,16 @@ CREATE TABLE IF NOT EXISTS ataque(
 
   CONSTRAINT ataque_pk PRIMARY KEY(nome_item),
   CONSTRAINT ataque_item_fk FOREIGN KEY (nome_item) REFERENCES item (nome),
-  CONSTRAINT quantidade_ataque_ck CHECK((quantidade_ataque >= 0) AND (quantidade_ataque <= 100))
+  CONSTRAINT quantidade_ataque_ck CHECK((dano >= 0) AND (dano <= 100))
 );
 
 CREATE TABLE IF NOT EXISTS defesa(
   nome_item CHAR(20),
   incremento SMALLINT,
 
-  CONSTRAINT defesa_pk PRIMARY KEY(nome_item)
+  CONSTRAINT defesa_pk PRIMARY key (nome_item),
   CONSTRAINT defesa_item_fk FOREIGN KEY (nome_item) REFERENCES item (nome),
-  CONSTRAINT quantidade_defesa_ck CHECK((quantidade_defesa >= 0) AND (quantidade_defesa <= 100)),
+  CONSTRAINT quantidade_defesa_ck check ((incremento >= 0) AND (incremento <= 100))
 );
 
 CREATE TABLE IF NOT EXISTS chakra(
@@ -64,7 +65,7 @@ CREATE TABLE IF NOT EXISTS chakra(
 
   CONSTRAINT chakra_pk PRIMARY KEY(nome_item),
   CONSTRAINT chakra_item_fk FOREIGN KEY (nome_item) REFERENCES item (nome),
-  CONSTRAINT quantidade_chakra_ck CHECK((quantidade_chakra >= 0) AND (quantidade_chakra <= 100)),
+  CONSTRAINT quantidade_chakra_ck CHECK((ganho >= 0) AND (ganho <= 100))
 );
 
 CREATE TABLE IF NOT EXISTS personagem(
@@ -72,19 +73,19 @@ CREATE TABLE IF NOT EXISTS personagem(
   nome_regiao CHAR(20) NOT NULL,
   tipo tipo_personagem,
 
-  CONSTRAINT personagem_pk PRIMARY KEY(nome)
+  CONSTRAINT personagem_pk PRIMARY KEY(nome),
   CONSTRAINT personagem_regiao_fk FOREIGN KEY (nome_regiao) REFERENCES regiao (nome) /*ON DELETE SET NULL*/
 )
 
 CREATE TABLE IF NOT EXISTS atacante(
-  nome_atacante CHAR(20)
+  nome_atacante CHAR(20),
   nivel INTEGER,
   vida INTEGER,
   chakra INTEGER,
   defesa INTEGER,
   ataque INTEGER,
 
-  CONSTRAINT atacante_pk PRIMARY KEY(nome_atacante)
+  CONSTRAINT atacante_pk PRIMARY KEY(nome_atacante),
   CONSTRAINT atacante_personagem_fk FOREIGN KEY (nome_atacante) REFERENCES personagem (nome) 
 );
 
@@ -96,19 +97,19 @@ CREATE TABLE IF NOT EXISTS entregador_missao(
 );
 
 CREATE TABLE IF NOT EXISTS inventario(
-  id INTEGER SERIAL,
+  id SERIAL,
   nome_atacante CHAR(20) NOT NULL,
 
   CONSTRAINT inventario_pk PRIMARY KEY(id),
-  CONSTRAINT inventario_atacante_fk FOREIGN KEY (nome_atacante) REFERENCES atacante (nome_atacante),
+  CONSTRAINT inventario_atacante_fk FOREIGN KEY (nome_atacante) REFERENCES atacante (nome_atacante)
 );
 
 CREATE TABLE IF NOT EXISTS instancia_item(
-  id INTEGER SERIAL,
+  id SERIAL,
   nome_item CHAR(20),
   quantidade INTEGER,
-  id_inventario,
-  nome_regiao,
+  id_inventario INTEGER,
+  nome_regiao CHAR(20),
 
   CONSTRAINT instancia_item_pk PRIMARY KEY(id, nome_item),
   CONSTRAINT instancia_item_inventario_fk FOREIGN KEY (id_inventario) REFERENCES inventario (id),
@@ -117,23 +118,21 @@ CREATE TABLE IF NOT EXISTS instancia_item(
 
 CREATE TABLE IF NOT EXISTS loja(
   nome CHAR(20),
-  descricao VARCHAR(100),
-  desaparece boolean,
+  taxa INTEGER,
+  nome_regiao CHAR(20),
 
   CONSTRAINT loja_pk PRIMARY KEY(nome),
-  CONSTRAINT loja_regiao_fk FOREIGN KEY (nome_regiao) REFERENCES regiao (nome) ,
-  CONSTRAINT taxa_ck CHECK((taxa >= 0) AND (taxa <= 100))
+  CONSTRAINT loja_regiao_fk FOREIGN KEY (nome_regiao) REFERENCES regiao (nome)
 );
 
 CREATE TABLE IF NOT EXISTS venda(
-  id INTEGER SERIAL,
+  id SERIAL,
   id_instancia_item INTEGER NOT NULL,
   nome_item CHAR(20) NOT NULL,
   nome_loja CHAR(20) NOT NULL,
 
   CONSTRAINT venda_pk PRIMARY KEY(id),
-  CONSTRAINT venda_instancia_item_id_fk FOREIGN KEY (id_instancia_item) REFERENCES instancia_item (id),
-  CONSTRAINT venda_instancia_item_nome_fk FOREIGN KEY (id_instancia_item) REFERENCES instancia_item (nome_item),
+  CONSTRAINT venda_instancia_item_fk FOREIGN KEY (id_instancia_item, nome_item) REFERENCES instancia_item (id, nome_item),
   CONSTRAINT venda_loja_fk FOREIGN KEY (nome_loja) REFERENCES loja (nome)
 );
 
@@ -158,31 +157,116 @@ CREATE TABLE IF NOT EXISTS inimigo(
 )
 
 CREATE TABLE IF NOT EXISTS instancia_inimigo(
-  id INTEGER SERIAL,
+  id SERIAL,
   nome_inimigo CHAR(20),
 
-  CONSTRAINT instancia_inimigo_pk PRIMARY KEY(id),
-  CONSTRAINT instancia_inimigo_inimigo_fk FOREIGN KEY (nome_inimigo) REFERENCES atacante (nome_atacante) /*ON DELETE SET NULL*/
+  CONSTRAINT instancia_inimigo_pk PRIMARY KEY(id, nome_inimigo),
+  CONSTRAINT instancia_inimigo_inimigo_fk FOREIGN KEY (nome_inimigo) REFERENCES inimigo (nome_inimigo) /*ON DELETE SET NULL*/
 )
 
+CREATE TABLE IF NOT EXISTS batalha(
+  id SERIAL,
+  nome_personagem_principal CHAR(20),
+  nome_inimigo CHAR(20),
+  id_instancia_inimigo INTEGER,
 
-CREATE TABLE IF NOT EXISTS JUTSU(
-  nome CHAR(20),
-  descricao CHAR(20)
-  dano INTEGER,
-  chakra_gasto_por_uso INTEGER,
-  nome_elemento CHAR(20)
-
-  CONSTRAINT jutsu_pk PRIMARY KEY (nome)
+  CONSTRAINT batalha_pk PRIMARY KEY(id),
+  CONSTRAINT batalha_personagem_principal_fk FOREIGN KEY (nome_personagem_principal) REFERENCES personagem_principal (nome_personagem),
+  CONSTRAINT batalha_nome_inimigo_fk FOREIGN KEY (nome_inimigo, id_instancia_inimigo) REFERENCES instancia_inimigo (nome_inimigo, id)
 )
 
-CREATE TABLE IF NOT EXISTS ELEMENTO(
-  nome INTEGER,
-  dano_logo INTEGER,
+CREATE TABLE IF NOT EXISTS elemento(
+  nome VARCHAR(20),
+  dano_fogo INTEGER,
   dano_agua INTEGER,
   dano_terra INTEGER,
   dano_vento INTEGER,
 
   CONSTRAINT elemento_pk PRIMARY KEY(nome)
-  
+)
+
+CREATE TABLE IF NOT EXISTS jutsu(
+  nome CHAR(20),
+  descricao CHAR(50),
+  dano INTEGER,
+  chakra_gasto_por_uso INTEGER,
+  nome_elemento CHAR(20),
+
+  CONSTRAINT jutsu_pk PRIMARY KEY (nome),
+  CONSTRAINT jutsu_elemento_fk FOREIGN KEY (nome_elemento) REFERENCES elemento (nome)
+)
+
+CREATE TABLE IF NOT EXISTS sabe_jutsu(
+  id SERIAL,
+  nome_jutsu CHAR(20),
+  nome_atacante CHAR(20),
+
+  CONSTRAINT sabe_jutsu_pk PRIMARY KEY (id),
+  CONSTRAINT sabe_jutsu_jutsu_fk FOREIGN KEY (nome_jutsu) REFERENCES jutsu (nome),
+  CONSTRAINT jutsu_atacante_fk FOREIGN KEY (nome_atacante) REFERENCES atacante (nome_atacante)
+)
+
+CREATE TABLE IF NOT EXISTS missao(
+  titulo CHAR(20),
+  tipo tipo_missao,
+
+  CONSTRAINT missao_pk PRIMARY KEY (titulo)
+)
+
+CREATE TABLE IF NOT EXISTS primaria(
+  titulo_missao CHAR(20),
+  descricao VARCHAR(50),
+  experiencia_ganha INTEGER,
+  nivel_necessario INTEGER,
+  id_instancia_inimigo INTEGER,
+  nome_inimigo CHAR(20),
+
+
+  CONSTRAINT primaria_missao_pk PRIMARY KEY (titulo_missao),
+  CONSTRAINT primaria_titulo_missao_fk FOREIGN KEY (titulo_missao) REFERENCES missao (titulo),
+  CONSTRAINT primaria_instancia_inimigo_fk FOREIGN KEY (id_instancia_inimigo, nome_inimigo) REFERENCES instancia_inimigo (id, nome_inimigo)
+)
+
+CREATE TABLE IF NOT EXISTS secundaria(
+  titulo_missao CHAR(20),
+  descricao CHAR(50),
+  experiencia_ganha INTEGER,
+  nivel_necessario INTEGER,
+  id_instancia_item INTEGER,
+  nome_item CHAR(20),
+
+
+  CONSTRAINT secundaria_pk PRIMARY KEY (titulo_missao),
+  CONSTRAINT secundaria_titulo_missao_fk FOREIGN KEY (titulo_missao) REFERENCES missao (titulo),
+  CONSTRAINT secundaria_instancia_item_fk FOREIGN KEY (id_instancia_item, nome_item) REFERENCES instancia_item (id, nome_item)
+)
+
+CREATE TABLE IF NOT EXISTS treinamento(
+  titulo_missao CHAR(20),
+  descricao CHAR(50),
+  experiencia_ganha INTEGER,
+  nivel_necessario INTEGER,
+  id_instancia_item INTEGER,
+  nome_item CHAR(20),
+  incremento INTEGER,
+  tempo_requerido INTEGER,
+  chance_sucesso INTEGER,
+  cooldown INTEGER,
+  nome_personagem CHAR(20),
+
+  CONSTRAINT treinamento_pk PRIMARY KEY (titulo_missao),
+  CONSTRAINT treinamento_titulo_missao_fk FOREIGN KEY (titulo_missao) REFERENCES missao (titulo),
+  CONSTRAINT treinamento_nome_personagem_fk FOREIGN KEY (nome_personagem) REFERENCES personagem_principal (nome_personagem)
+)
+
+
+CREATE TABLE IF NOT EXISTS instancia_missao(
+  id SERIAL,
+  titulo_missao CHAR(20),
+  nome_entregador CHAR(20),
+  nome_personagem CHAR(20),
+
+  CONSTRAINT instancia_missao_pk PRIMARY KEY (id),
+  CONSTRAINT instancia_missao_titulo_missao_fk FOREIGN KEY (titulo_missao) REFERENCES missao (titulo),
+  CONSTRAINT instancia_missao_nome_personagem_fk FOREIGN KEY (nome_personagem) REFERENCES personagem_principal (nome_personagem)
 )
