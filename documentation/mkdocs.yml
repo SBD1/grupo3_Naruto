@@ -7,15 +7,15 @@ theme:
     primary: "deep orange"
     accent: "deep purple"
   features:
-    - tabs
-    - navigation.section
+    - navigation.tabs
 
 nav:
-  - "Home": "index.md"
-  - "Políticas de Contribuição": "policies.md"
-  - "Modelo Entidade-Relacionamento (MER)": "diagrama_entidade_relacionamento.md"
-  - "Modelo Relacional": "modelo_relacional.md"
-  - "Dicionário de Dados": "dicionario_de_dados.md"
-  # Siga este exemplo para navegação com dropdown
-  # - "Entidades Inicias"
-  #   - "Entidade X": flkhfkjlhjkf
+  - Home: index.md
+  - Políticas de Contribuição: policies.md
+  - Módulo 1:
+    - Modelo Entidade-Relacionamento (MER): modulo1/diagrama_entidade_relacionamento.md
+    - Modelo Relacional: modulo1/modelo_relacional.md
+    - Dicionário de Dados: modulo1/dicionario_de_dados.md
+  - Módulo 2:
+    - SQL:
+      - DDL: modulo2/sql/ddl.md
