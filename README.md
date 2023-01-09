@@ -1,6 +1,6 @@
 # Banco de Dados 1 - Naruto
 
-Repositório para desenvolvimento do jogo Naruto da disciplina de SBD1 - 2022.1
+Repositório para desenvolvimento do jogo Naruto da disciplina de SBD1 - 2022.2
 
 ## Equipe
 
