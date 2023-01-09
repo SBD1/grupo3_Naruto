@@ -16,6 +16,7 @@ nav:
   - "Modelo Entidade-Relacionamento (MER)": "diagrama_entidade_relacionamento.md"
   - "Modelo Relacional": "modelo_relacional.md"
   - "Dicionário de Dados": "dicionario_de_dados.md"
+  - "Normalização": "normalizacao.md"
   # Siga este exemplo para navegação com dropdown
   # - "Entidades Inicias"
   #   - "Entidade X": flkhfkjlhjkf
