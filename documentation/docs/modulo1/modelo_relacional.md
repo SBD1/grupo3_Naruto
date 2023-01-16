@@ -4,20 +4,24 @@
 
 Este documento tem como objetivo representar os dados da aplicação, em formato de tabelas, que serão futuramente implementados em um sistema gerenciador de banco de dados.
 
+## Versão 2.3
+
+[![Imagem de capa](../images/modelo-relacional23.jpg)](../images/modelo-relacional23.jpg)
+[Clique aqui ou na imagem para ver o modelo relacional com mais detalhes](../images/modelo-relacional23.jpg)
 ## Versão 2.2
 
-[![Imagem de capa](./images/modelo-relacional22.png)](./images/modelo-relacional22.png)
-[Clique aqui ou na imagem para ver o modelo relacional com mais detalhes](./images/modelo-relacional22.png)
+[![Imagem de capa](../images/modelo-relacional22.png)](../images/modelo-relacional22.png)
+[Clique aqui ou na imagem para ver o modelo relacional com mais detalhes](../images/modelo-relacional22.png)
 
 ## Versão 2.1
 
-[![Imagem de capa](./images/modelo-relacional21.png)](./images/modelo-relacional21.png)
-[Clique aqui ou na imagem para ver o modelo relacional com mais detalhes](./images/modelo-relacional21.png)
+[![Imagem de capa](../images/modelo-relacional21.png)](../images/modelo-relacional21.png)
+[Clique aqui ou na imagem para ver o modelo relacional com mais detalhes](../images/modelo-relacional21.png)
 
 ## Versão 2.0
 
-[![Imagem de capa](./images/modelo-relacional2.jpg)](./images/modelo-relacional2.jpg)
-[Clique aqui ou na imagem para ver o modelo relacional com mais detalhes](./images/modelo-relacional2.jpg)
+[![Imagem de capa](../images/modelo-relacional2.jpg)](../images/modelo-relacional2.jpg)
+[Clique aqui ou na imagem para ver o modelo relacional com mais detalhes](../images/modelo-relacional2.jpg)
 
 ## Versão 1.2
 
@@ -26,8 +30,8 @@ Este documento tem como objetivo representar os dados da aplicação, em formato
 
 ## Versão 1.1
 
-[![Imagem de capa](./images/ModeloRelacional1.1.jpg)](./images/ModeloRelacional1.1.jpg)
-[Clique aqui ou na imagem para ver o modelo relacional com mais detalhes](./images/ModeloRelacional1.1.jpg
+[![Imagem de capa](../images/ModeloRelacional1.1.jpg)](../images/ModeloRelacional1.1.jpg)
+[Clique aqui ou na imagem para ver o modelo relacional com mais detalhes](../images/ModeloRelacional1.1.jpg)
 
 ## Versão 1.0
 
@@ -42,3 +46,4 @@ Este documento tem como objetivo representar os dados da aplicação, em formato
 | 28/11/2022 | `1.1`  |       Correções no Modelo Relacional       | [Eliseu Kadesh](https://github.com/eliseukadesh67), [Maciel Júnior](https://github.com/macieljuniormax) |
 | 09/01/2023 | `2.0`  |   Correções segundo revisão do professor   |                               João Paulo, Maciel Júnior, Maurício Machado                               |
 | 16/01/2023 | `2.2`  |            Remoção tabela mapa             |                                            Maurício Machado                                             |
+| 16/01/2023 | `2.3`  |            Adição de atributos em instancia de região, venda e instancia de item              |                                           [Maciel Júnior](https://github.com/macieljuniormax)                                            |
