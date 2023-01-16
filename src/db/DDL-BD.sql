@@ -121,11 +121,13 @@ CREATE TABLE IF NOT EXISTS instancia_item(
   id_inventario INTEGER,
   id_instancia_regiao INTEGER,
   nome_regiao VARCHAR(40),
+  nome_loja VARCHAR(40)
 
   CONSTRAINT instancia_item_pk PRIMARY KEY(id, nome_item),
   CONSTRAINT instancia_item_item_fk FOREIGN KEY (nome_item) REFERENCES item (nome),
   CONSTRAINT instancia_item_inventario_fk FOREIGN KEY (id_inventario) REFERENCES inventario (id),
   CONSTRAINT instancia_item_regiao_fk FOREIGN KEY (id_instancia_regiao, nome_regiao) REFERENCES instancia_regiao (id, nome_regiao)
+  CONSTRAINT instancia_item_regiao_fk FOREIGN KEY (nome_loja) REFERENCES loja (nome_loja)
 );
 
 CREATE TABLE IF NOT EXISTS loja(
