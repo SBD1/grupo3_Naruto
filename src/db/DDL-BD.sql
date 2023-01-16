@@ -3,16 +3,12 @@ CREATE DATABASE naruto;
 CREATE TYPE tipo_personagem as enum ('atacante', 'entregador_de_missao');
 CREATE TYPE tipo_atacante as enum ('personagem_principal', 'inimigo');
 CREATE TYPE tipo_item as enum ('cura', 'ataque', 'defesa', 'chakra');
-CREATE TYPE tipo_missao as enum ('primaria', 'secundaria', 'treinamentor');
+CREATE TYPE tipo_missao as enum ('primaria', 'secundaria', 'treinamento');
 CREATE TYPE tipo_resultado as enum ('vitoria', 'derrota', 'empate');
 
 CREATE TABLE IF NOT EXISTS regiao(
   nome VARCHAR(40),
   descricao VARCHAR(400),
-  norte INTEGER,
-  sul INTEGER,
-  leste INTEGER,
-  oeste INTEGER,
 
   CONSTRAINT regiao_pk PRIMARY KEY(nome),
   CONSTRAINT regiao_mapa_fk FOREIGN KEY (nome_mapa) REFERENCES mapa (nome)
@@ -21,18 +17,13 @@ CREATE TABLE IF NOT EXISTS regiao(
 CREATE TABLE IF NOT EXISTS instancia_regiao(
   id SERIAL,
   nome_regiao VARCHAR(40) NOT NULL,
+  norte INTEGER,
+  sul INTEGER,
+  leste INTEGER,
+  oeste INTEGER,
 
   CONSTRAINT instancia_regiao_pk PRIMARY KEY(id, nome_regiao),
   CONSTRAINT instancia_item_regiao_fk FOREIGN KEY (nome_regiao) REFERENCES regiao (nome)
-);
-
-CREATE TABLE IF NOT EXISTS item(
-  nome VARCHAR(40),
-  descricao VARCHAR(400),
-  desaparece BOOLEAN NOT NULL,
-  tipo tipo_item NOT NULL,
-
-  CONSTRAINT item_pk PRIMARY KEY(nome)
 );
 
 CREATE TABLE IF NOT EXISTS cura(
@@ -150,6 +141,7 @@ CREATE TABLE IF NOT EXISTS loja(
 CREATE TABLE IF NOT EXISTS venda(
   id SERIAL,
   id_instancia_item INTEGER NOT NULL,
+  valor_compra INTEGER NOT NULL,
   nome_item VARCHAR(40) NOT NULL,
   nome_loja VARCHAR(40) NOT NULL,
 
@@ -249,7 +241,7 @@ CREATE TABLE IF NOT EXISTS geral(
 
 CREATE TABLE IF NOT EXISTS treinamento(
   titulo_missao VARCHAR(60),
-  descricao CHAR(1200),
+  descricao VARCHAR(1200),
   experiencia_ganha INTEGER,
   nivel_necessario INTEGER,
   incremento INTEGER,
