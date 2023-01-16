@@ -18,233 +18,243 @@ Durante uma das lives, o professor Maurício comentou que seria interessante a e
 
 Ambientes do jogo onde contém **items , PersonagemPrincipal e Inimigo**
 
-| Nome       | Descrição                                                                                                                                             | Nome_Mapa | Norte       | Sul        | Leste       | Oeste       |
-|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|-------------|------------|-------------|-------------|
-| Konoha     | A vila oculta da folha, onde Naruto Uzumaki e seus amigos vivem e treinam para se tornarem ninjas.                                                    | Konoha    | Montanhas   | Rio        | Floresta    | Deserto     |
-| Suna       | A vila oculta do vento, liderada pelo Sábio dos Seis Caminhos. É conhecida por seus ninjas de longo alcance e táticas de combate de areia.             | Suna      | Montanhas   | Deserto    | Oceano      | Nenhum      |
-| Ame        | A vila oculta da chuva, liderada por Hanzō. É conhecida por seus ninjas com habilidades de assassinato e inteligência.                                  | Ame       | Montanhas   | Selva      | Nenhum      | Nenhum      |
-| Oto        | A vila oculta do som, liderada por Orochimaru. É conhecida por seus ninjas com habilidades de genjutsu e técnicas de invocação.                        | Oto       | Montanhas   | Rio        | Nenhum      | Nenhum      |
-| Ilha da Luta | Uma ilha remota onde ocorre o torneio Chunin, onde os genins de várias vilas ocultas se enfrentam em batalhas.                                         | Ilha da Luta | Oceano     | Oceano     | Oceano     | Oceano     |
+| Atributo       | Propriedades do Atributo | Tipo de dado | Tamanho | Descrição | Exemplo   |
+|----------------|-------------------------|---------------|----------|-----------|-----------|
+| Nome           | Chave Primária Obrigatória | varchar       | 30      | Nome da região do jogo | "Konoha"  |
+| Descrição      | Obrigatório              | varchar       | 255     | Descreve a região | "A vila oculta da folha, onde Naruto Uzumaki e seus amigos vivem e treinam para se tornarem ninjas." |                                               
 
 ### 2.2. Instância da Região
 
 Instância das regiões do jogo
 
-| id | Nome_Região   |
-|----|---------------|
-| 1  | Konoha         |
-| 2  | Suna            |
-| 3  | Ame              |
-
+| Atributo        | Propriedades do Atributo | Tipo de dado | Tamanho | Descrição | Exemplo   |
+|-----------------|-------------------------|---------------|----------|-----------|-----------|
+| Id              | Chave Primária Obrigatória | int           | 3       | Id da instância da região | 1 |
+| Nome_Regiao     | Chave Primária Obrigatória | varchar       | 30      | Nome da região | "Konoha" |
+| Norte          | Opcional                  | varchar       | 30      | O que está a norte da região | "Montanhas" |
+| Sul            | Opcional                  | varchar       | 30      | O que está a sul da região | "Rio"     |
+| Leste          | Opcional                  | varchar       | 30      | O que está a leste da região | "Floresta"|
+| Oeste          | Opcional                  | varchar       | 30      | O que está a oeste da região | "Deserto" |     
 
 ### 2.3. Personagem
 
 Início da criação de todos tipos de **Personagem**
 
-| Nome            | Tipo_Personagem |
-|------------------|------------------|
-| Naruto Uzumaki   | Atacante         |
-| Sakura Haruno    | Atacante         |
-| Kakashi Hatake   | EntregadorDeMissao |
-| Shikamaru Nara   | EntregadorDeMissao |
-| Gaara            | Atacante         |
+| Atributo           | Propriedades do Atributo | Tipo de dado | Tamanho | Descrição | Exemplo            |
+|--------------------|-------------------------|---------------|----------|-----------|--------------------|
+| Nome               | Chave Primária Obrigatória | varchar       | 20      | Nome do personagem | "Naruto Uzumaki" |
+| Tipo_Personagem    | Obrigatório              | varchar       | 17      | Qual o tipo do personagem | "EntregadorDeMissao" ou "Atacante" |
+
 
 ### 2.4. Atacante
 
 Tipo de personagem que irá se envolver em batalhas.
 
-| Nome_Atacante    | Tipo_Atacante    | Nível | Ataque | Vida  | Defesa | Chakra |
-|------------------|------------------|-------|--------|-------|--------|--------|
-| Naruto Uzumaki   | PersonagemPrincipal | 15    | 200    | 1000  | 150    | 800    |
-| Sakura Haruno    | PersonagemPrincipal | 12    | 150    | 800   | 120    | 600    |
-| Kaguya Ōtsutsuki | Inimigo          | 20    | 300    | 1500  | 200    | 1000   |
-| Obito Uchiha     | Inimigo          | 18    | 250    | 1300  | 180    | 900    |
-| Madara Uchiha    | Inimigo          | 22    | 350    | 1700  | 220    | 1100   |
+| Atributo        | Propriedades do Atributo | Tipo de dado | Tamanho | Descrição | Exemplo              |
+|-----------------|-------------------------|---------------|----------|-----------|----------------------|
+| Nome_atacante   | Chave Primária Obrigatória | varchar       | 20      | Nome do personagem | "Naruto Uzumaki"  |
+| Tipo_atacante   | Obrigatório              | varchar       | 19      | Qual o tipo de atacante | "PersonagemPrincipal" ou "Inimigo" |
+| Nivel           | Obrigatório              | int           | 2       | Nível do personagem | "15" |
+| Ataque          | Obrigatório              | int           | 3       | Ataque do personagem | "200" |
+| Vida            | Obrigatório              | int           | 4       | Vida do personagem   | "1000" |
+| Defesa          | Obrigatório              | int           | 3       | Defesa do personagem | "150" |
+| Chakra          | Obrigatório              | int           | 4       | Chakra do Personagem | "800" |
+
 
 ### 2.5. Inimigo
 
 Oponente que ataca o **PersonagemPrincipal**
 
-| Nome_Inimigo    | E_Boss | Dialogo_Encontro                                                                                                                                 | Dialogo_Vitoria                                                                                                                                 | Dialogo_Derrota                                                                                                                                 | Experiencia_Concedida |
-|-----------------|--------|------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|
-| Kaguya Ōtsutsuki | Sim    | "Eu sou Kaguya Ōtsutsuki, a mãe de todas as coisas vivas. Vocês não têm a menor chance contra mim."                                       | "Como é possível? Eu sou a mãe de todas as coisas vivas! Como vocês podem me derrotar?"                                            | "Vocês jamais serão páreo pra mim"                                                        | 5000                 |
-| Deidara     | Sim    | "Eu sou Deidara, o artista supremo. Vocês não têm a menor chance contra mim."                                                                                       | "A arte é uma explosão, Katsu!"                                      | "Eu não posso acreditar, eu perdi. Mas minhas obras de arte sempre serão lembradas."                                      | 2000                 |
-| Ninja da Areia   | Não    |  |  |  | 500 |
+| Atributo        | Propriedades do Atributo | Tipo de dado | Tamanho | Descrição | Exemplo              |
+|-----------------|-------------------------|---------------|----------|-----------|----------------------|
+Nome_inimigo           | Chave Primária Obrigatória | varchar      | 20      | Nome do inimigo                                                                                           | "Deidara"
+E_boss                 | Obrigatório              | boolean     | 1       | Se o inimigo é um boss                                                                                   | "True"
+Dialogo_encontro       | Opcional                  | varchar     | 255     | Diálogo que ocorre quando o jogador encontra o inimigo                                                    | "Eu sou Deidara, o artista supremo. Vocês não têm a menor chance contra mim."
+Dialogo_vitoria        | Opcional                  | varchar     | 255     | Diálogo que ocorre quando o jogador vence o inimigo                                                       | "A arte é uma explosão, Katsu!"
+Dialogo_derrota        | Opcional                  | varchar     | 255     | Diálogo que ocorre quando o jogador perde para o inimigo                                                  | "Eu não posso acreditar, eu perdi. Mas minhas obras de arte sempre serão lembradas."
+Experiencia_concedida  | Obrigatório              | int         | 5       | Experiência concedida ao jogador quando ele derrota o inimigo                                            | "2000"
 
 ### 2.6. Personagem Principal
 
 Personagem do jogador.
 
-| Nome_Personagem | Dinheiro | Descrição       | Experiencia |
-|------------------|----------|-----------------|-------------|
-| Naruto Uzumaki    | 100       | Jovem ninja aspirante a Hokage | 0 |
+| Atributo        | Propriedades do Atributo | Tipo de dado | Tamanho | Descrição | Exemplo              |
+|-----------------|-------------------------|---------------|----------|-----------|----------------------|
+| Nome_Personagem          | Chave Primária Obrigatória  | varchar           | 20       | Nome do personagem | "Naruto Uzumaki" |
+| Dinheiro          | Obrigatório  | int           | 6       | Quantidade de dinheiro que o persoangem tem | "1000" |
+| Descrição          | Obrigatório  | varchar           | 100       | Descrição de quem é o personagem | "Jovem ninja aspirante a Hokage" |
+| Experiência          | Obrigatório  | int           | 5       | Quanto de experiência o personagem tem | "0" |
 
 ### 2.7. Batalha
 
 Armazenamento da duração das batalhas e seus resultados
 
-| Id_Batalha | Tempo_Decorrido | Resultado   |
-|------------|------------------|-------------|
-| 1           | 9:54              | Vitória    |
-| 2           | 15:37             | Derrota     |
+| Atributo        | Propriedades do Atributo | Tipo de dado | Tamanho | Descrição | Exemplo              |
+|-----------------|-------------------------|---------------|----------|-----------|----------------------|
+| Id_batalha | Chave Primária Obrigatória  | int           | 4       | Id da batalha | "1" |
+| Tempo_decorrido | Obrigatório  | int           |    5    | Tempo em segundos da batalha | "653" |
+| Resultado | Obrigatório  | varchar           |    7    | Resultado da batalha | "Vitória" ou "Derrota" |
 
 ### 2.8. Entregadores de missão
 
 Personagem que entrega missões para o jogador
 
-| nome_entregador(string)|
-| :-: |
-| Kakashi |
+| Atributo        | Propriedades do Atributo | Tipo de dado | Tamanho | Descrição | Exemplo              |
+|-----------------|-------------------------|---------------|----------|-----------|----------------------|
+| Nome_entregador | Chave Primária Obrigatória  | varchar           | 20       | Personagem que entrega missões | "Hatake Kakashi" |
 
 ### 2.9. Missão
 
 Missões que o jogador pode ou deve realizar.
 
-| Título                 | Tipo_Missão |
-|------------------------|------------|
-| Treinamento Ninja      | Treinamento|
-| Caça ao Deidara        | Geral      |
-| Entrega de Encomenda   | Geral      |
+| Atributo        | Propriedades do Atributo | Tipo de dado | Tamanho | Descrição | Exemplo              |
+|-----------------|-------------------------|---------------|----------|-----------|----------------------|
+| Título | Chave Primária Obrigatória  | varchar           | 40       | Nome da missão | "Caça ao Deidara" |
+| Tipo_missao | Obrigatório  | varchar           | 11       | Tipo da missão | "Treinamento" ou "Geral" |
 
 ### 2.10. Treinamento
 
 Missões onde o jogador pode treinar suas habilidades e aumentar seus status.
 
-| Título_Missão          | Descrição | Experiência_Ganha | Nível_Necessário | Incremento | Tempo_Requerido | Chance_Sucesso | Cooldown |
-|------------------------|----------|-------------------|------------------|------------|------------------|----------------|----------|
-| Treinamento Ninja Básico | Treinamento básico para aprimoramento pessoal | 1000 | 5 | 10 | 120 | 80 | 60 |
-| Treinamento de Taijutsu | Treinamento focado em taijutsu | 800 | 3 | 5 | 60 | 50 | 30 |
-| Treinamento de Sharingan | Treinamento focado na habilidade visual Sharingan | 500 | 8 | 3 | 90 | 70 | 120 |
+| Atributo        | Propriedades do Atributo | Tipo de dado | Tamanho | Descrição | Exemplo              |
+|-----------------|-------------------------|---------------|----------|-----------|----------------------|
+| Título_missao | Chave Primária Obrigatória  | varchar           | 40       | Nome da missão | "Treinamento de Taijutsu" |
+| Descrição | Obrigatório  | varchar           | 100       | Descrição da missão | "Treinar seu taijutsu para ficar mais forte" |
+| Experiência_ganha | Obrigatório  | int           | 5       | Quantidade de experiência ganha ao completar a missão | "800" |
+| Nível_Necessario | Obrigatório  | int           | 2       | Nível necessário para realizar a missão | "3" |
+| Incremento | Obrigatório  | int           | 3       | Quanto de atributo você ira ganhar | "10" |
+| Tempo_Requerido | Obrigatório  | int           | 4       | Quanto tempo em segundos demorará o treino | "120" |
+| Chance_Sucesso | Obrigatório  | int           | 2       | Porcentagem de chance de sucesso do treino | "75" |
+| Cooldown | Obrigatório  | int           | 4       | Quanto tempo em segundos demorará para poder treinar de novo | "1800" |
 
 ### 2.11. Geral
 
 Missões primárias e secundárias que o jogador pode realizar.
 
-| Título_missão | is_primary | Descrição                                                                                                                                 | Experiência_Ganha | Nível_Necessário |
-|----------------|------------|--------------------------------------------------------------------------------------------------------------------------------------------|--------------------|------------------|
-| Caça ao Deidara | true      | Cace Deidara para chegar mais perto do lider da Akatsuki                                                                                           | 5000                | 10                |
-| Entrega de Encomenda | false | Faça a entrega de encomendas para os moradores da vila.                                                                                | 2000                | 2                |
+| Atributo        | Propriedades do Atributo | Tipo de dado | Tamanho | Descrição | Exemplo              |
+|-----------------|-------------------------|---------------|----------|-----------|----------------------|
+| Título_missao | Chave Primária Obrigatória  | varchar           | 40       | Nome da missão | "Caça ao Deidara" |
+| is_primary | Obrigatória  | boolean           | 1       | Diz se a missão é primária ou secundária | "True" ou "False" |
+| Descrição | Obrigatória  | varchar           | 100       | Descrição da missão | "Cace Deidara para chegar mais perto do lider da Akatsuki" |
+| Experiência_ganha | Obrigatória  | int           | 5       | Experiência ganha ao completar missão | "5000" |
+| Nível_necessário| Obrigatória  | int           | 2       | Nível necessário para iniciar a missão | "10" |
 
 ### 2.12. Instância de missão
 
 Instâncias da missão entregue pelos entregadores de missão.
 
-| id  | Is_Done |
-|-----|---------|
-| 1   | true    |
-| 2   | false   |
-| 3   | true    |
+| Atributo        | Propriedades do Atributo | Tipo de dado | Tamanho | Descrição | Exemplo              |
+|-----------------|-------------------------|---------------|----------|-----------|----------------------|
+| Id | Chave Primária Obrigatória  | int           | 3       | Id da missão | "1" |
+| Titulo_missao | Chave Primária Obrigatória  | varchar         | 40       | Nome da missão | "Caça ao Deidara" |
+| Is_Done | Obrigatório  | boolean           | 1       | Diz se missão está feita ou não | "True" ou "False" |
 
 ### 2.13. Jutsu
 
 Jutsus utilizados por atacantes nas batalhas
 
-| Nome            | Descrição                                           | Dano  | Chakra_Gasto_Por_Uso |
-|------------------|----------------------------------------------------|-------|-----------------------|
-| Rasengan         | Técnica de bola de chakra concentrado              | 1000  | 20                      |
-| Chidori           | Técnica de relâmpago concentrado                    | 800   | 25                      |
-| Sharingan Mangekyō | Evolução do Sharingan, habilita o uso de Amaterasu | 1200 | 50                      |
+| Atributo        | Propriedades do Atributo | Tipo de dado | Tamanho | Descrição | Exemplo              |
+|-----------------|-------------------------|---------------|----------|-----------|----------------------|
+| Nome | Chave Primária Obrigatória  | varchar           | 20       | Nome do jutsu | "Rasengan" |
+| Descrição | Obrigatório | varchar           | 50      | Descrição do jutsu | "Técnica de bola de chakra concentrado" |
+| Dano | Obrigatório | int           | 4      | Quanto de dano jutsu dá | "1000" |
+| Chakra_gasto_por_uso | Obrigatório | int           | 3      | Quanto de chakra é gasto para usar o jutsu | "50" |
 
 ### 2.14. Sabe Jutsu
 
 Relação para mostrar que um personagem sabe um jutsu
 
-| Nome_Jutsu       | Nome_Atacante    |
-|------------------|------------------|
-| Rasengan         | Naruto Uzumaki    |
-| Chidori           | Sasuke Uchiha     |
-| Sharingan Mangekyō | Itachi Uchiha    |
+| Atributo        | Propriedades do Atributo | Tipo de dado | Tamanho | Descrição | Exemplo              |
+|-----------------|-------------------------|---------------|----------|-----------|----------------------|
+| Nome_jutsu | Chave Primária Obrigatória  | varchar           | 20       | Nome do jutsu | "Rasengan" |
+| Nome_atacante| Chave Primária Obrigatória  | varchar           | 20       | Nome do atacante | "Naruto Uzumaki" |
 
 ### 2.15. Loja
 
 Lojas em que o personagem principal pode comprar items.
 
-| Nome     | Taxa |
-|----------|------|
-| Loja de Ramen | 10    |
-| Loja de Armas Ninja | 20    |
-| Loja de Pergaminhos | 5     |
+| Atributo        | Propriedades do Atributo | Tipo de dado | Tamanho | Descrição | Exemplo              |
+|-----------------|-------------------------|---------------|----------|-----------|----------------------|
+| Nome | Chave Primária Obrigatória  | varchar           | 20       | Nome da loja | "Loja de Ramen" |
+| Taxa| Obrigatório  | int           | 2       | Taxa da loja para compras | "10" |
 
 ### 2.16. Venda
 
 Ato de realizar uma compra numa loja.
 
-| id_Venda | Valor_compra |
-|----------|--------------|
-| 1        | 100           |
-| 2        | 50            |
-| 3        | 200          |
+| Atributo        | Propriedades do Atributo | Tipo de dado | Tamanho | Descrição | Exemplo              |
+|-----------------|-------------------------|---------------|----------|-----------|----------------------|
+| Id_venda | Chave Primária Obrigatória  | int          | 3       | Id de uma venda na loja | "1" |
+| Valor_compra | Chave Primária Obrigatória  | int          | 4       | Valor total da compra na loja | "100" |
 
 ### 2.17. Item
 
 Item que pode ser utilizado para uma finalidade específica
 
-| Nome     | Descrição                                 | desaparece | tipo_item |
-|----------|------------------------------------------------|------------|------------|
-| Pílula de Cura | Cura pequenos ferimentos | true   | Cura          |
-| Shuriken | Arma de ataque à distância              | true   | Ataque       |
-| Armadura | Aumenta a defesa do usuário             | true   | Defesa       |
-| Pílula de Chakra | Recupera o chakra do usuário | true    | Chakra       |
-| Encomenda | Entregue para a Tsunade | false    |        |
+| Atributo        | Propriedades do Atributo | Tipo de dado | Tamanho | Descrição | Exemplo              |
+|-----------------|-------------------------|---------------|----------|-----------|----------------------|
+| Nome | Chave Primária Obrigatória  | varchar          | 20      | Nome do item | "Shuriken" |
+| Descrição | Obrigatório  | varchar          | 50      | Descrição do item | "Arma de ataque à distância" |
+| Desaparece | Obrigatório  | boolean          | 1      | Se o item desaparece ou não caso fique no chão por muito tempo | "True" ou "False" |
+| Tipo_item | Obrigatório  | varchar          | 6      | Qual o tipo do item | "Cura", "Defesa", "Ataque" ou "Chakra" |
 
 ### 2.18. Cura
 
 Items para curar vida do personagem
 
-| Nome_item | Quantidade |
-|-----------|------------|
-| Pílula de Cura | 10       |
-| Poção de Cura  | 5        |
+| Atributo        | Propriedades do Atributo | Tipo de dado | Tamanho | Descrição | Exemplo              |
+|-----------------|-------------------------|---------------|----------|-----------|----------------------|
+| Nome_item | Chave Primária Obrigatória  | varchar          | 20      | Nome do item | "Pílula de Cura" |
+| Quantidade | Obrigatório | int       | 3      | Quanto de vida ele irá curar | "200" |
 
 ### 2.19. Ataque
 
 Items para utililizar em batalhas pelo persoanagem
 
-| Nome_item | Dano |
-|-----------|------|
-| Shuriken  | 100  |
-| Kunai | 150 |
+ Atributo        | Propriedades do Atributo | Tipo de dado | Tamanho | Descrição | Exemplo              |
+|-----------------|-------------------------|---------------|----------|-----------|----------------------|
+| Nome_item | Chave Primária Obrigatória  | varchar          | 20      | Nome do item | "Shuriken" |
+| Dano | Obrigatório  | int          | 3      | Quanto de dano o item dá em lutas | "100" |
 
 ### 2.20. Defesa
 
 Items que aumentam a defesa do personagem
 
-| Nome_item   | Incremento |
-|-------------|------------|
-| Armadura    | 50         |
-| Pílula de defesa      | 30         |
+ Atributo        | Propriedades do Atributo | Tipo de dado | Tamanho | Descrição | Exemplo              |
+|-----------------|-------------------------|---------------|----------|-----------|----------------------|
+| Nome_item | Chave Primária Obrigatória  | varchar          | 20      | Nome do item | "Pílula de defesa" |
+| Incremento | Obrigatório  | int          | 3      | Quanto item dá de incremento na defesa | "50" |
 
 ### 2.21. Chakra
 
 Items que reccuperam o Chakra do personagem
 
-| Nome_item     | Ganho |
-|---------------|-------|
-| Pílula de Chakra | 20   |
-| Erva de Chakra   | 10   |
+ Atributo        | Propriedades do Atributo | Tipo de dado | Tamanho | Descrição | Exemplo              |
+|-----------------|-------------------------|---------------|----------|-----------|----------------------|
+| Nome_item | Chave Primária Obrigatória  | varchar          | 20      | Nome do item | "Erva de Chakra" |
+| Ganho | Chave Primária Obrigatória  | int          | 3      | Quanto de chakra o item recupera | "150" |
 
 ### 2.22. Instância de item
 
 Instância dos items do jogo, armazenados no inventário do personagem.
 
-| Id | Nome_Item     | Quantidade |
-|----|---------------|------------|
-| 1  | Pílula de Cura | 10         |
-| 2  | Shuriken      | 5          |
-| 3  | Kunai      | 2          |
+Atributo        | Propriedades do Atributo | Tipo de dado | Tamanho | Descrição | Exemplo              |
+|-----------------|-------------------------|---------------|----------|-----------|----------------------|
+| Id | Chave Primária Obrigatória  | int          | 3      | Id do item | "1" |
+| Nome | Chave Primária Obrigatória  | varchar          | 20      | Nome do item | "Shuriken" |
+| Quantidade | Obrigatório  | int          | 3      | Quantos itens do tipo o personagem tem | "20" |
 
 ### 2.23. Inventário
 
 Guarda os **Items**
 
-| Id |
-|----|
-| 1  |
-| 2  |
-| 3  |
+Atributo        | Propriedades do Atributo | Tipo de dado | Tamanho | Descrição | Exemplo              |
+|-----------------|-------------------------|---------------|----------|-----------|----------------------|
+| Id | Chave Primária Obrigatória  | int          | 3      | Id do inventário do personagem | "1" |
 
 ## Histórico de versão
 | Versão | Data | Descrição | Autor |
 | :----: | :--: | :-------: | :---: 
 |1.0 | 26/11/2022 | Criação da página | Caio Vitor Carneiro |
 |2.0 | 15/01/2023 | Criação do novo Dicionário de Dados | João Paulo Coelho |
+|3.0 | 15/01/2023 | Alteração da forma que é feita o dicionário de dados | João Paulo Coelho |
