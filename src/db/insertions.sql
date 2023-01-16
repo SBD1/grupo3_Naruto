@@ -108,11 +108,6 @@ INSERT INTO instancia_regiao (
 ) 
 VALUES('Área Comercial de Konoha', NULL, NULL, NULL, NULL);
 
-INSERT INTO entregador_missao (nome_entregador) VALUES ('Tsunade');
-INSERT INTO entregador_missao (nome_entregador) VALUES ('Guy');
-INSERT INTO entregador_missao (nome_entregador) VALUES ('Kakashi');
-
-
 /* Personagens */
 
 INSERT INTO personagem (
@@ -127,8 +122,9 @@ INSERT INTO personagem (
   id_instancia_regiao,
   nome_regiao,
   tipo
-) 
+)
   VALUES ('Itachi', 2, 'Monumento dos hokages', 'atacante');
+
 INSERT INTO personagem (
   nome,
   id_instancia_regiao,
@@ -136,18 +132,21 @@ INSERT INTO personagem (
   tipo
 ) 
   VALUES ('Guy', 3, 'Quintais do prédio governamental', 'entregador_de_missao');
+
 INSERT INTO personagem (
   nome,
   id_instancia_regiao,
   nome_regiao,
   tipo) 
   VALUES ('Kakashi', 4, 'Entrada Prédio governamental', 'entregador_de_missao');
+
 INSERT INTO personagem (
   nome,
   id_instancia_regiao,
   nome_regiao,
   tipo) 
   VALUES ('Kisame', 5, 'Área Comercial de Konoha', 'atacante');
+
 INSERT INTO personagem
 (
   nome, 
@@ -156,6 +155,8 @@ INSERT INTO personagem
   tipo
 )
   VALUES('Itachi', 5, 'Área Comercial de Konoha', 'atacante');
+
+/* Atacantes */
 
 INSERT INTO atacante 
 (
@@ -183,6 +184,8 @@ INSERT INTO atacante
 )
   VALUES('Kisame', 30, 100, 90, 50, 80, NULL, 'inimigo');
 
+
+/* Personagem Principal */
 
 INSERT INTO personagem_principal (
   nome_personagem,
@@ -214,6 +217,12 @@ INSERT INTO atacante
 )
   VALUES('naruto_username', 2, 100, 100, 100, 50, NULL, 'personagem_principal');
 
+
+/* Entregadores de missão */
+
+INSERT INTO entregador_missao (nome_entregador) VALUES ('Tsunade');
+INSERT INTO entregador_missao (nome_entregador) VALUES ('Guy');
+INSERT INTO entregador_missao (nome_entregador) VALUES ('Kakashi');
 
 /* Missões */
 
@@ -407,7 +416,7 @@ INSERT INTO instancia_item
   VALUES('Shuriken', 2, NULL, 5, 'Área Comercial de Konoha');
 
 INSERT INTO loja(
-  nome,
+  nome_loja,
   taxa,
   id_instancia_regiao,
   nome_regiao
