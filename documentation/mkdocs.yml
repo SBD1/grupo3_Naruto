@@ -16,6 +16,7 @@ nav:
     - Modelo Entidade-Relacionamento (MER): modulo1/diagrama_entidade_relacionamento.md
     - Modelo Relacional: modulo1/modelo_relacional.md
     - Dicionário de Dados: modulo1/dicionario_de_dados.md
+    - Normalização: "modulo1/normalizacao.md"
   - Módulo 2:
     - SQL:
       - DDL: modulo2/sql/ddl.md
