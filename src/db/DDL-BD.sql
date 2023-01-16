@@ -10,8 +10,7 @@ CREATE TABLE IF NOT EXISTS regiao(
   nome VARCHAR(40),
   descricao VARCHAR(400),
 
-  CONSTRAINT regiao_pk PRIMARY KEY(nome),
-  CONSTRAINT regiao_mapa_fk FOREIGN KEY (nome_mapa) REFERENCES mapa (nome)
+  CONSTRAINT regiao_pk PRIMARY KEY(nome)
 );
 
 CREATE TABLE IF NOT EXISTS instancia_regiao(
