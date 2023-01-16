@@ -8,26 +8,26 @@ O DER (Diagrama Entidade-Relacionamento) é utilizado para representar em forma 
 
 ## Diagrama Entidade-Relacionamento (Versão v3.2)
 
-[![DER Versão 3.2](./images/diagrama-entidade-relacionamento-v32.png)](./images/diagrama-entidade-relacionamento-v32.png)
-[Clique aqui ou na imagem para ver o DER com mais detalhes](./images/diagrama-entidade-relacionamento-v32.png)
+[![DER Versão 3.2](../images/diagrama-entidade-relacionamento-v32.png)](../images/diagrama-entidade-relacionamento-v32.png)
+[Clique aqui ou na imagem para ver o DER com mais detalhes](../images/diagrama-entidade-relacionamento-v32.png)
 
 ## Diagrama Entidade-Relacionamento (Versão v3.1)
 
-[![DER Versão 3.1](./images/diagrama-entidade-relacionamento-v31.png)](./images/diagrama-entidade-relacionamento-v31.png)
-[Clique aqui ou na imagem para ver o DER com mais detalhes](./images/diagrama-entidade-relacionamento-v31.png)
+[![DER Versão 3.1](../images/diagrama-entidade-relacionamento-v31.png)](../images/diagrama-entidade-relacionamento-v31.png)
+[Clique aqui ou na imagem para ver o DER com mais detalhes](../images/diagrama-entidade-relacionamento-v31.png)
 
 ## Diagrama Entidade-Relacionamento (Versão v3.0)
 
-[![DER Versão 3.0](./images/diagrama-entidade-relacionamento-v3.png)](./images/diagrama-entidade-relacionamento-v3.png)
-[Clique aqui ou na imagem para ver o DER com mais detalhes](./images/diagrama-entidade-relacionamento-v3.png)
+[![DER Versão 3.0](../images/diagrama-entidade-relacionamento-v3.png)](../images/diagrama-entidade-relacionamento-v3.png)
+[Clique aqui ou na imagem para ver o DER com mais detalhes](../images/diagrama-entidade-relacionamento-v3.png)
 
 ## Diagrama Entidade-Relacionamento (Versão v2.0)
 
-[![DER Versão 2.0](./images/diagrama-entidade-relacionamento-v2.png)](./images/diagrama-entidade-relacionamento-v2.png)
+[![DER Versão 2.0](../images/diagrama-entidade-relacionamento-v2.png)](../images/diagrama-entidade-relacionamento-v2.png)
 
 ### Versão v1.0
 
-![DER v1.0](./images/diagrama-entidade-relacionamento-v1.png)
+![DER v1.0](../images/diagrama-entidade-relacionamento-v1.png)
 
 ## Histórico de versões
 
