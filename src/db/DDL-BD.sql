@@ -25,6 +25,16 @@ CREATE TABLE IF NOT EXISTS instancia_regiao(
   CONSTRAINT instancia_item_regiao_fk FOREIGN KEY (nome_regiao) REFERENCES regiao (nome)
 );
 
+CREATE TABLE IF NOT EXISTS item(
+  nome VARCHAR(40),
+  descricao VARCHAR(400),
+  desaparece BOOLEAN NOT NULL,
+  tipo tipo_item NOT NULL,
+
+  CONSTRAINT item_pk PRIMARY KEY(nome)
+); 
+-- todo (garantir que um item esteja apenas em um local (Região, Inventario ou Personagem))
+
 CREATE TABLE IF NOT EXISTS cura(
   nome_item VARCHAR(40),
   quantidade SMALLINT NOT NULL,
@@ -104,16 +114,6 @@ CREATE TABLE IF NOT EXISTS atacante(
   CONSTRAINT atacante_inventario_fk FOREIGN KEY (id_inventario) REFERENCES inventario (id) 
 );
 
-CREATE TABLE IF NOT EXISTS item(
-  nome VARCHAR(40),
-  descricao VARCHAR(400),
-  desaparece BOOLEAN NOT NULL,
-  tipo tipo_item NOT NULL,
-
-  CONSTRAINT item_pk PRIMARY KEY(nome)
-); 
--- todo (garantir que um item esteja apenas em um local (Região, Inventario ou Personagem))
-
 CREATE TABLE IF NOT EXISTS instancia_item(
   id SERIAL,
   nome_item VARCHAR(40) NOT NULL,
@@ -135,7 +135,7 @@ CREATE TABLE IF NOT EXISTS loja(
   nome_regiao VARCHAR(40) NOT NULL,
 
   CONSTRAINT loja_pk PRIMARY KEY(nome),
-  CONSTRAINT loja_regiao_fk FOREIGN KEY (id_instancia_regiao, nome_regiao) REFERENCES regiao (id, nome_regiao)
+  CONSTRAINT loja_regiao_fk FOREIGN KEY (id_instancia_regiao, nome_regiao) REFERENCES instancia_regiao (id, nome_regiao)
 );
 
 CREATE TABLE IF NOT EXISTS venda(
@@ -159,8 +159,7 @@ CREATE TABLE IF NOT EXISTS personagem_principal(
 
   CONSTRAINT personagem_principal_pk PRIMARY KEY(nome_personagem),
   CONSTRAINT dinheiro_ck CHECK((dinheiro >= 0) AND (dinheiro <= 999)),
-  CONSTRAINT experiencia_ck CHECK((experiencia >= 0) AND (experiencia <= 100)),
-  CONSTRAINT personagem_atacante FOREIGN KEY (nome_personagem) REFERENCES atacante (nome_atacante) 
+  CONSTRAINT experiencia_ck CHECK((experiencia >= 0) AND (experiencia <= 100))
 );
 
 CREATE TABLE IF NOT EXISTS inimigo(
@@ -261,7 +260,7 @@ CREATE TABLE IF NOT EXISTS instancia_missao(
   titulo_missao VARCHAR(60),
   nome_entregador VARCHAR(40),
   nome_personagem VARCHAR(40),
-
+  /* is_done BOOLEAN (Adicionar depois ) - Eliseu Kadesh)*/
   CONSTRAINT instancia_missao_pk PRIMARY KEY (id),
   CONSTRAINT instancia_missao_missao_fk FOREIGN KEY (titulo_missao) REFERENCES missao (titulo),
   CONSTRAINT instancia_missao_entregador_fk FOREIGN KEY (nome_entregador) REFERENCES entregador_missao (nome_entregador),
