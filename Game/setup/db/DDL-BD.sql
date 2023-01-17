@@ -1,5 +1,3 @@
-CREATE DATABASE naruto;
-
 \c naruto;
 
 CREATE TYPE tipo_personagem as enum ('atacante', 'entregador_de_missao');
