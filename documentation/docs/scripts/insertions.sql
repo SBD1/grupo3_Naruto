@@ -1,3 +1,5 @@
+\c naruto;
+
 /* Missão */
 
 INSERT INTO missao (titulo, tipo) VALUES ('Derrote Sasori', 'primaria');
@@ -40,11 +42,11 @@ INSERT INTO missao (titulo, tipo) VALUES ('Deixa o futuro continuar', 'secundari
 
 /* Jutsu */
 
+Caio, [16/01/2023 22:07]
 INSERT INTO jutsu (nome, descricao, dano, chakra_gasto_por_uso) VALUES ('Jutsu de Substituição', 'Técnica ninja básica, onde em perigo o ninja troca sua posição com algum item, não se machucando', 10, 5); 
 INSERT INTO jutsu (nome, descricao, dano, chakra_gasto_por_uso) VALUES ('Sombra da Folha Dançante', 'Crie três clones da sombra e distraia o inimigo para conseguir chutá-lo ao ar', 10, 5);
 INSERT INTO jutsu (nome, descricao, dano, chakra_gasto_por_uso) VALUES ('Técnica de Invocação: Sapos', 'Você conseguiu ser reconhecido pelo Monte Myõboku. Agora pode invocar o Gamabunta (sapo chefe) para te ajudar em batalhas', 10, 5);
 INSERT INTO jutsu (nome, descricao, dano, chakra_gasto_por_uso) VALUES ('Técnica de Invocação: Cobras', 'Você conseguiu ser reconhecido pela Caverna Ryuchi. Agora você pode Manda (chefe das cobras) para te ajudar em batalhas.', 10, 5);
-INSERT INTO jutsu (nome, descricao, dano, chakra_gasto_por_uso) VALUES ('Jutsu do Dedo Secreto da Aldeia da Folha: Mil Anos de morte', 'Técnica suprema super poderosa, onde o usuário inser os dedos médios no ânus do aniversário.', 10, 5);
 INSERT INTO jutsu (nome, descricao, dano, chakra_gasto_por_uso) VALUES ('Rasengan', 'Técnica de Rank A inventada pelo Quarto Hokage (Minato), que a criou com base na formação da bola da besta com cauda. Manipulação de chakra puro em forma de uma espiral de chakra.', 10, 5);
 INSERT INTO jutsu (nome, descricao, dano, chakra_gasto_por_uso) VALUES ('Jutsu Bola de Fogo', 'Usuário amassa seu chakra dentro do corpo e o converta em natureza de fogo e, em seguida, o expulsa da boca.', 10, 5);
 INSERT INTO jutsu (nome, descricao, dano, chakra_gasto_por_uso) VALUES ('Chidori', 'Técnica canaliza uma grande quantidade de chakra de Liberação de Relâmpago na mão do usuário. A quantidade de chakra é tão grande que se torna visível. A alta concentração de energia elétrica produz um som que lembra muitos pássaros cantando, daí o nome. Uma vez que a técnica é completada, o usuário carrega para frente e empurra o Chidori no alvo.', 10, 5);
@@ -53,10 +55,10 @@ INSERT INTO jutsu (nome, descricao, dano, chakra_gasto_por_uso) VALUES ('Hirudor
 INSERT INTO jutsu (nome, descricao, dano, chakra_gasto_por_uso) VALUES ('Modo sábio', 'Modo Sábio é um estado mental alcançado ao misturar perfeitamente a Energia Natural presente em todas as coisas, com o chakra espiritual e físico de cada pessoa, gerando assim o que é conhecido como o Chakra do Senjutsu e permitindo que o ninja acesse o Modo Sábio.  Ao entrar nesse modo, o usuário ganha upgrades em todos os seus atributos, melhorando a sua força, agilidade, reflexos, resistência e até o poder dos seus jutsus.', 10, 5);
 INSERT INTO jutsu (nome, descricao, dano, chakra_gasto_por_uso) VALUES ('Andar sobre parede', 'Jutsu sem aplicação para suas futura batalhas. Aonde será possível usar o jutsu de subir paredes (algumas árvores podem ser interpretadas como paredes).', 10, 5);
 INSERT INTO jutsu (nome, descricao, dano, chakra_gasto_por_uso) VALUES ('Andar sobre a água', 'Você conhece seu corpo e conhece controlar o chakra com maior precisão. Dessa forma, consegue passar por regiões onde antes não conseguia acessar (essa técnica não causa dano em inimigos).', 10, 5);
-INSERT INTO jutsu (nome, descricao, dano, chakra_gasto_por_uso) VALUES ('Selo Byakugou', 'Técnica de controle de chakra do usuário permite que ele execute técnicas sem qualquer perda de energia. Quando liberado, o selo se espalhará pelo rosto do usuário ou envolverá todo o seu corpo. O chakra armazenado é então liberado em seu corpo, amplificando muito o poder de suas técnicas. No nível 1, duração é de um turno e dano de jutsus é ampliado por 1.25. No nível 2, a duração é de dois turnos e dano de jutsus é ampliado por 1.50. No nível 3, a duração é de dois turnos e dano de jutsus é ampliado por 2.00.', 10, 5);
 
 /* Regioes */
 
+Caio, [16/01/2023 22:07]
 INSERT INTO regiao (nome, descricao) VALUES ('Monumento dos hokages', 'Montanha que tem tido os rostos de todos os Hokage esculpidas na pedra. Foi imaginado por Hashirama Senju como um símbolo de que os Hokage sempre zelarão pela aldeia. Para subir o monumento você precisar saber a subir paredes. Use o jutsu e aprecie a vista do topo da vila, quem sabe quais surpresas terão lá em cima.');
 INSERT INTO regiao (nome, descricao) VALUES ('Prédio governamental da folha', 'Prédio onde o hokage está na maior parte do tempo. Todas as decisões sobre a vila partem desse prédio.');
 INSERT INTO regiao (nome, descricao) VALUES ('Quintais do prédio governamental', 'Região cheia de plantas e flores para acalmar os chefes políticos da vila em momentos de descontração.');
@@ -70,7 +72,7 @@ INSERT INTO instancia_regiao (
   leste,
   oeste
 ) 
-VALUES('Prédio governamental da folha', NULL, NULL, NULL, NULL);
+VALUES('Prédio governamental da folha','Monumento dos hokages','Quintais do prédio governamental','Entrada Prédio governamental','Área Comercial de Konoha');
 
 INSERT INTO instancia_regiao (
   nome_regiao,
@@ -78,7 +80,7 @@ INSERT INTO instancia_regiao (
   sul,
   leste,
   oeste
-) 
+) id_instancia_regiao
 VALUES('Monumento dos hokages', NULL, NULL, NULL, NULL);
 
 INSERT INTO instancia_regiao (
@@ -146,15 +148,6 @@ INSERT INTO personagem (
   nome_regiao,
   tipo) 
   VALUES ('Kisame', 5, 'Área Comercial de Konoha', 'atacante');
-
-INSERT INTO personagem
-(
-  nome, 
-  id_instancia_regiao,
-  nome_regiao,
-  tipo
-)
-  VALUES('Itachi', 5, 'Área Comercial de Konoha', 'atacante');
 
 /* Atacantes */
 
@@ -226,6 +219,7 @@ INSERT INTO entregador_missao (nome_entregador) VALUES ('Kakashi');
 
 /* Missões */
 
+Caio, [16/01/2023 22:07]
 INSERT INTO instancia_missao (titulo_missao, nome_entregador, nome_personagem) VALUES ('Tutorial 1 - Converse com kakashi', 'Tsunade', 'naruto_username');
 INSERT INTO instancia_missao (titulo_missao, nome_entregador, nome_personagem) VALUES ('Derrote Itachi', 'Kakashi', 'naruto_username');
 INSERT INTO instancia_missao (titulo_missao, nome_entregador, nome_personagem) VALUES ('Derrote Kisame', 'Guy', 'naruto_username');
@@ -353,68 +347,6 @@ INSERT INTO inventario DEFAULT VALUES;
 
 UPDATE atacante SET id_inventario = 1 WHERE nome_atacante = 'naruto_username';
 
-/* Exemplo de instancia de item em um inventario */
-INSERT INTO instancia_item
-(
-  nome_item,
-  quantidade,
-  id_inventario,
-  id_instancia_regiao,
-  nome_regiao
-)
-  VALUES('Shuriken', 4, 1, NULL, NULL);
-
-INSERT INTO instancia_item
-(
-  nome_item,
-  quantidade,
-  id_inventario,
-  id_instancia_regiao,
-  nome_regiao
-)
-  VALUES('Elixir de cura I', 2, 1, NULL, NULL);
-
-/* Exemplo de instancia de item em uma região */
-INSERT INTO instancia_item
-(
-  nome_item,
-  quantidade,
-  id_inventario,
-  id_instancia_regiao,
-  nome_regiao
-)
-  VALUES('Shuriken', 2, NULL, 3, 'Quintais do prédio governamental');
-
-INSERT INTO instancia_item
-(
-  nome_item,
-  quantidade,
-  id_inventario,
-  id_instancia_regiao,
-  nome_regiao
-)
-  VALUES('Kunai', 1, NULL, 2, 'Monumento dos hokages');
-
-INSERT INTO instancia_item
-(
-  nome_item,
-  quantidade,
-  id_inventario,
-  id_instancia_regiao,
-  nome_regiao
-)
-  VALUES('Kunai', 1, NULL, 5, 'Área Comercial de Konoha');
-
-INSERT INTO instancia_item
-(
-  nome_item,
-  quantidade,
-  id_inventario,
-  id_instancia_regiao,
-  nome_regiao
-)
-  VALUES('Shuriken', 2, NULL, 5, 'Área Comercial de Konoha');
-
 INSERT INTO loja(
   nome_loja,
   taxa,
@@ -423,14 +355,75 @@ INSERT INTO loja(
 )
   VALUES('Loja 1', 5, 1, 'Prédio governamental da folha');
 
-INSERT INTO venda
+/* Exemplo de instancia de item em um inventario */
+INSERT INTO instancia_item
 (
-  id_instancia_item,
-  valor_compra,
   nome_item,
+  quantidade,
+  id_inventario,
+  id_instancia_regiao,
+  nome_regiao,
   nome_loja
 )
-  VALUES (6, 15, 'Kunai', 'Loja 1');
+  VALUES('Shuriken', 4, 1, NULL, NULL,NULL);
+
+INSERT INTO instancia_item
+(
+  nome_item,
+  quantidade,
+  id_inventario,
+  id_instancia_regiao,
+  nome_regiao,
+  nome_loja
+)
+  VALUES('Elixir de cura I', 2, 1, NULL, NULL,NULL);
+
+/* Exemplo de instancia de item em uma região */
+INSERT INTO instancia_item
+(
+  nome_item,
+  quantidade,
+  id_inventario,
+  id_instancia_regiao,
+  nome_regiao,
+  nome_loja
+)
+  VALUES('Shuriken', 2, NULL, 3, 'Quintais do prédio governamental',NULL);
+
+INSERT INTO instancia_item
+(
+  nome_item,
+  quantidade,
+  id_inventario,
+  id_instancia_regiao,
+  nome_regiao,
+  nome_loja
+)
+  VALUES('Kunai', 1, NULL, 2, 'Monumento dos hokages',NULL);
+
+INSERT INTO instancia_item
+(
+  nome_item,
+  quantidade,
+  id_inventario,
+  id_instancia_regiao,
+  nome_regiao,
+  nome_loja
+)
+  VALUES('Kunai', 1, NULL, NULL, NULL,'Loja 1');
+
+Caio, [16/01/2023 22:07]
+INSERT INTO instancia_item
+(
+  nome_item,
+  quantidade,
+  id_inventario,
+  id_instancia_regiao,
+  nome_regiao,
+  nome_loja
+)
+  VALUES('Shuriken', 2, NULL, NULL, NULL,'Loja 1');
+
 
 INSERT INTO venda
 (
@@ -439,4 +432,13 @@ INSERT INTO venda
   nome_item,
   nome_loja
 )
-  VALUES (7, 15, 'Shuriken', 'Loja 1');
+  VALUES (5, 15, 'Kunai', 'Loja 1');
+
+INSERT INTO venda
+(
+  id_instancia_item,
+  valor_compra,
+  nome_item,
+  nome_loja
+)
+  VALUES (3, 15, 'Shuriken', 'Loja 1');
