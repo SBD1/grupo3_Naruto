@@ -24,7 +24,7 @@ def run_query_fetchall(query):
 
 def get_region_ByPersonagem(player_name_nome_regiao):
     query_response = run_query_fetchall(
-        f"SELECT * from conecta where centro='{player_name_nome_regiao}'")
+        f"SELECT * from instancia_regiao where nome_regiao='{player_name_nome_regiao}'")
     items = []
     for item in query_response:
         items.append(dict(item))
@@ -61,9 +61,7 @@ def run_insert(query):
 
 def insert_new_personagem(player_name):
     try:
-        run_insert(
-            f"INSERT INTO personagem (nome,nome_regiao,tipo) VALUES('{player_name}','brasilia','atacante');"
-        )
+        run_insert(f"INSERT INTO personagem (nome,id_instancia_regiao,nome_regiao,tipo) VALUES('{player_name}','1','Prédio governamental da folha','atacante');")
     except:
         return []
 

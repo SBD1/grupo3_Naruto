@@ -10,4 +10,4 @@ COPY . /db
 # run create.sql on init
 ADD CREATE-BD.sql /docker-entrypoint-initdb.d
 ADD DDL-BD.sql /docker-entrypoint-initdb.d
-ADD DML-BD.sql /docker-entrypoint-initdb.d
+ADD insertions.sql /docker-entrypoint-initdb.d

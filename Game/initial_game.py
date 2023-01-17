@@ -1,5 +1,5 @@
 from time import sleep
-from database import get_user_info, insert_new_personagem,mudarRegiaoUsuario,run_query_fetchone
+from database import get_user_info, insert_new_personagem,mudarRegiaoUsuario,run_query_fetchone,run_update
 from utils import *
 
 
@@ -30,17 +30,17 @@ def initial_menu():
                 continue
         elif tecla == '2':
             # lista conexoes disponiveis
-            personagem= get_user_info(player_name)
-            query_response = run_query_fetchone(f"SELECT * from conecta where centro='{personagem['nome_regiao']}'")
+            playerData=run_query_fetchone(f"SELECT * from personagem WHERE nome='{player_name}'")
+            query_response = run_query_fetchone(f"SELECT * from instancia_regiao where nome_regiao='{playerData['nome_regiao']}'")
             for item in list(query_response.values()):
                 print(item)
             mudarRegiaoPersonagem=input('Insira o mapa da sua escolha:  ')
-            mudarRegiaoUsuario(mudarRegiaoPersonagem,personagem['nome'])
+            query_responseRegiao = run_query_fetchone(f"SELECT * from instancia_regiao where nome_regiao='{mudarRegiaoPersonagem}'")
+            run_update(f"UPDATE personagem SET (id_instancia_regiao,nome_regiao) = ('{query_responseRegiao['id']}','{mudarRegiaoPersonagem}') WHERE nome ='{player_name}';")
         elif tecla == '3':
-            personagem= run_query_fetchone(f"SELECT * from personagem where nome='{personagem['nome']}'")
+            personagem= run_query_fetchone(f"SELECT * from personagem where nome='{playerData['nome']}'")
             print(personagem)
             sleep(10)
-        elif tecla == '0':
             exit_game()
             return
         else:
