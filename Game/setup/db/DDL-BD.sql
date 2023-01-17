@@ -1,3 +1,5 @@
+CREATE DATABASE naruto;
+
 \c naruto;
 
 CREATE TYPE tipo_personagem as enum ('atacante', 'entregador_de_missao');
@@ -16,10 +18,10 @@ CREATE TABLE IF NOT EXISTS regiao(
 CREATE TABLE IF NOT EXISTS instancia_regiao(
   id SERIAL,
   nome_regiao VARCHAR(40) NOT NULL,
-  norte VARCHAR(40),
-  sul VARCHAR(40),
-  leste VARCHAR(40),
-  oeste VARCHAR(40),
+  norte INTEGER,
+  sul INTEGER,
+  leste INTEGER,
+  oeste INTEGER,
 
   CONSTRAINT instancia_regiao_pk PRIMARY KEY(id, nome_regiao),
   CONSTRAINT instancia_item_regiao_fk FOREIGN KEY (nome_regiao) REFERENCES regiao (nome)

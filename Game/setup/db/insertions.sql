@@ -147,6 +147,7 @@ INSERT INTO personagem (
   tipo) 
   VALUES ('Kisame', 5, 'Área Comercial de Konoha', 'atacante');
 
+<<<<<<< HEAD:Game/setup/db/insertions.sql
 /* Atacantes */
 INSERT INTO personagem
 (
@@ -157,6 +158,8 @@ INSERT INTO personagem
 )
   VALUES('Itachi', 5, 'Área Comercial de Konoha', 'atacante');
 
+=======
+>>>>>>> 431a5833486f2728f313c009b9a2dd5567e8388b:documentation/docs/scripts/insertions.sql
 /* Atacantes */
 
 INSERT INTO atacante 
