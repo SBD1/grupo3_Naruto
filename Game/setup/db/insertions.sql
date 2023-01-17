@@ -148,6 +148,16 @@ INSERT INTO personagem (
   VALUES ('Kisame', 5, 'Área Comercial de Konoha', 'atacante');
 
 /* Atacantes */
+INSERT INTO personagem
+(
+  nome, 
+  id_instancia_regiao,
+  nome_regiao,
+  tipo
+)
+  VALUES('Itachi', 5, 'Área Comercial de Konoha', 'atacante');
+
+/* Atacantes */
 
 INSERT INTO atacante 
 (
@@ -420,6 +430,13 @@ INSERT INTO instancia_item
 )
   VALUES('Shuriken', 2, NULL, NULL, NULL,'Loja 1');
 
+INSERT INTO loja(
+  nome_loja,
+  taxa,
+  id_instancia_regiao,
+  nome_regiao
+)
+  VALUES('Loja 1', 5, 1, 'Prédio governamental da folha');
 
 INSERT INTO venda
 (

@@ -1,5 +1,7 @@
 CREATE DATABASE naruto;
 
+\c naruto;
+
 CREATE TYPE tipo_personagem as enum ('atacante', 'entregador_de_missao');
 CREATE TYPE tipo_atacante as enum ('personagem_principal', 'inimigo');
 CREATE TYPE tipo_item as enum ('cura', 'ataque', 'defesa', 'chakra');
@@ -114,6 +116,16 @@ CREATE TABLE IF NOT EXISTS atacante(
   CONSTRAINT atacante_inventario_fk FOREIGN KEY (id_inventario) REFERENCES inventario (id) 
 );
 
+CREATE TABLE IF NOT EXISTS loja(
+  nome_loja VARCHAR(40),
+  taxa INTEGER,
+  id_instancia_regiao INTEGER NOT NULL,
+  nome_regiao VARCHAR(40) NOT NULL,
+
+  CONSTRAINT loja_pk PRIMARY KEY(nome_loja),
+  CONSTRAINT loja_regiao_fk FOREIGN KEY (id_instancia_regiao, nome_regiao) REFERENCES instancia_regiao (id, nome_regiao)
+);
+
 CREATE TABLE IF NOT EXISTS instancia_item(
   id SERIAL,
   nome_item VARCHAR(40) NOT NULL,
@@ -121,23 +133,13 @@ CREATE TABLE IF NOT EXISTS instancia_item(
   id_inventario INTEGER,
   id_instancia_regiao INTEGER,
   nome_regiao VARCHAR(40),
-  nome_loja VARCHAR(40)
+  nome_loja VARCHAR(40),
 
   CONSTRAINT instancia_item_pk PRIMARY KEY(id, nome_item),
   CONSTRAINT instancia_item_item_fk FOREIGN KEY (nome_item) REFERENCES item (nome),
   CONSTRAINT instancia_item_inventario_fk FOREIGN KEY (id_inventario) REFERENCES inventario (id),
-  CONSTRAINT instancia_item_regiao_fk FOREIGN KEY (id_instancia_regiao, nome_regiao) REFERENCES instancia_regiao (id, nome_regiao)
-  CONSTRAINT instancia_item_regiao_fk FOREIGN KEY (nome_loja) REFERENCES loja (nome_loja)
-);
-
-CREATE TABLE IF NOT EXISTS loja(
-  nome VARCHAR(40),
-  taxa INTEGER,
-  id_instancia_regiao INTEGER NOT NULL,
-  nome_regiao VARCHAR(40) NOT NULL,
-
-  CONSTRAINT loja_pk PRIMARY KEY(nome),
-  CONSTRAINT loja_regiao_fk FOREIGN KEY (id_instancia_regiao, nome_regiao) REFERENCES instancia_regiao (id, nome_regiao)
+  CONSTRAINT instancia_item_regiao_fk FOREIGN KEY (id_instancia_regiao, nome_regiao) REFERENCES instancia_regiao (id, nome_regiao),
+  CONSTRAINT instancia_item_loja_fk FOREIGN KEY (nome_loja) REFERENCES loja (nome_loja)
 );
 
 CREATE TABLE IF NOT EXISTS venda(
@@ -149,7 +151,7 @@ CREATE TABLE IF NOT EXISTS venda(
 
   CONSTRAINT venda_pk PRIMARY KEY(id),
   CONSTRAINT venda_instancia_item_fk FOREIGN KEY (id_instancia_item, nome_item) REFERENCES instancia_item (id, nome_item),
-  CONSTRAINT venda_loja_fk FOREIGN KEY (nome_loja) REFERENCES loja (nome)
+  CONSTRAINT venda_loja_fk FOREIGN KEY (nome_loja) REFERENCES loja (nome_loja)
 );
 
 
