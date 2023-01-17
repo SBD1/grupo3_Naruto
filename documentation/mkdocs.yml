@@ -20,3 +20,4 @@ nav:
   - Módulo 2:
     - SQL:
       - DDL: modulo2/sql/ddl.md
+      - DML: modulo2/sql/dml.md

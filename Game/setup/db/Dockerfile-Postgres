@@ -1,0 +1,13 @@
+# base image
+FROM postgres:15
+
+# Set Workdir
+WORKDIR /db
+
+# Copy database files
+COPY . /db
+
+# run create.sql on init
+ADD CREATE-BD.sql /docker-entrypoint-initdb.d
+ADD DDL-BD.sql /docker-entrypoint-initdb.d
+ADD insertions.sql /docker-entrypoint-initdb.d
