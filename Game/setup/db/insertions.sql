@@ -78,7 +78,7 @@ INSERT INTO instancia_regiao (
   sul,
   leste,
   oeste
-) id_instancia_regiao
+)
 VALUES('Monumento dos hokages', NULL, NULL, NULL, NULL);
 
 INSERT INTO instancia_regiao (
@@ -147,19 +147,6 @@ INSERT INTO personagem (
   tipo) 
   VALUES ('Kisame', 5, 'Área Comercial de Konoha', 'atacante');
 
-<<<<<<< HEAD:Game/setup/db/insertions.sql
-/* Atacantes */
-INSERT INTO personagem
-(
-  nome, 
-  id_instancia_regiao,
-  nome_regiao,
-  tipo
-)
-  VALUES('Itachi', 5, 'Área Comercial de Konoha', 'atacante');
-
-=======
->>>>>>> 431a5833486f2728f313c009b9a2dd5567e8388b:documentation/docs/scripts/insertions.sql
 /* Atacantes */
 
 INSERT INTO atacante 
@@ -375,7 +362,7 @@ INSERT INTO instancia_item
   nome_regiao,
   nome_loja
 )
-  VALUES('Shuriken', 4, 1, NULL, NULL,NULL);
+  VALUES('Shuriken', 4, 1, NULL, NULL, NULL);
 
 INSERT INTO instancia_item
 (
@@ -386,7 +373,7 @@ INSERT INTO instancia_item
   nome_regiao,
   nome_loja
 )
-  VALUES('Elixir de cura I', 2, 1, NULL, NULL,NULL);
+  VALUES('Elixir de cura I', 2, 1, NULL, NULL, NULL);
 
 /* Exemplo de instancia de item em uma região */
 INSERT INTO instancia_item
@@ -398,7 +385,7 @@ INSERT INTO instancia_item
   nome_regiao,
   nome_loja
 )
-  VALUES('Shuriken', 2, NULL, 3, 'Quintais do prédio governamental',NULL);
+  VALUES('Shuriken', 2, NULL, 3, 'Quintais do prédio governamental', NULL);
 
 INSERT INTO instancia_item
 (
@@ -409,7 +396,7 @@ INSERT INTO instancia_item
   nome_regiao,
   nome_loja
 )
-  VALUES('Kunai', 1, NULL, 2, 'Monumento dos hokages',NULL);
+  VALUES('Kunai', 1, NULL, 2, 'Monumento dos hokages', NULL);
 
 INSERT INTO instancia_item
 (
@@ -420,7 +407,7 @@ INSERT INTO instancia_item
   nome_regiao,
   nome_loja
 )
-  VALUES('Kunai', 1, NULL, NULL, NULL,'Loja 1');
+  VALUES('Kunai', 1, NULL, NULL, NULL, 'Loja 1');
 
 INSERT INTO instancia_item
 (
@@ -431,7 +418,7 @@ INSERT INTO instancia_item
   nome_regiao,
   nome_loja
 )
-  VALUES('Shuriken', 2, NULL, NULL, NULL,'Loja 1');
+  VALUES('Shuriken', 2, NULL, NULL, NULL, 'Loja 1');
 
 
 INSERT INTO venda
