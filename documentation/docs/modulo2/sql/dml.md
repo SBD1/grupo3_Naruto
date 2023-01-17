@@ -2,17 +2,17 @@
 
 ## Introdução
 
-Este documento tem como objetivo mostrar as possiveis consultas e manipulações que seram realizadas no nosso banco de dados durante o nosso desenvolvimento através da DML (Data Manipulation Language) em SQL.
+Este documento tem como objetivo mostrar as possíveis consultas e manipulações que serão realizadas no nosso banco de dados durante o nosso desenvolvimento através da DML (Data Manipulation Language) em SQL.
 
 ## O que é DML
 
-DML ou Data Manipulation Language, é uma linguagem utilizada para accessar ou manipular o banco de dados através de um conjunto de comandos.
+DML ou Data Manipulation Language, é uma linguagem utilizada para acessar ou manipular o banco de dados através de um conjunto de comandos.
 
 ## Comandos utilizados
 
 Neste primeiro momento utilizamos os comandos `SELECT`, `UPDATE`, `DELETE` e `INSERT`.
 
-## Possiveis consultas e manipulações
+## Possíveis consultas e manipulações
 
 A seguir mostraremos o script que utilizamos para definirmos as possíveis consultas durante o desenvolvimento do nosso projeto. PS: Criamos neste scripts alguns exemplos de nomes de personagens e inimigos apenas para exemplificação.
 
