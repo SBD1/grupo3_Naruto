@@ -290,6 +290,8 @@ CREATE TABLE IF NOT EXISTS instancia_missao(
 
 ```
 
+Este script pode ser acessado também através deste link: <a href="../scripts/DDL-BD.sql" download="DDL-BD.sql">DML</a>.
+
 ## Histórico de versões
 
 |    Data    | Versão |             Descrição              |        Autor         |
