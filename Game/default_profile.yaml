@@ -1,0 +1,5 @@
+PGHOST: db
+PGUSER: postgres
+PGPASSWORD: postgres
+PGDATABASE: naruto
+PGPORT: 5432

@@ -1,0 +1,33 @@
+version: '3.7'
+
+services:
+  db:
+    build:
+      context: ./setup/db
+      dockerfile: Dockerfile-Postgres
+    ports:
+      - 5435:5432
+    networks:
+      - game-network
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
+  game:
+    image: python:3
+    working_dir: /usr/src/game
+    volumes:
+      - type: bind
+        source: ./
+        target: /usr/src/game
+    networks:
+      - game-network
+    restart: always
+    command: >
+      bash -c " pip install --no-cache-dir -r requirements.txt && echo 'Requirements installed' && tail -f /dev/null"
+    depends_on:
+      - db
+
+networks:
+  game-network:
+    driver: bridge
