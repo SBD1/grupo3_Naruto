@@ -70,7 +70,7 @@ INSERT INTO instancia_regiao (
   leste,
   oeste
 ) 
-VALUES('Prédio governamental da folha','Monumento dos hokages','Quintais do prédio governamental','Entrada Prédio governamental','Área Comercial de Konoha');
+VALUES('Prédio governamental da folha', NULL , NULL, NULL, NULL);
 
 INSERT INTO instancia_regiao (
   nome_regiao,
@@ -78,7 +78,7 @@ INSERT INTO instancia_regiao (
   sul,
   leste,
   oeste
-) id_instancia_regiao
+)
 VALUES('Monumento dos hokages', NULL, NULL, NULL, NULL);
 
 INSERT INTO instancia_regiao (
