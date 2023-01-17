@@ -78,7 +78,7 @@ INSERT INTO instancia_regiao (
   sul,
   leste,
   oeste
-) id_instancia_regiao
+) 
 VALUES('Monumento dos hokages', NULL, NULL, NULL, NULL);
 
 INSERT INTO instancia_regiao (
