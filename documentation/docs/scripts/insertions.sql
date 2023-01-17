@@ -42,7 +42,6 @@ INSERT INTO missao (titulo, tipo) VALUES ('Deixa o futuro continuar', 'secundari
 
 /* Jutsu */
 
-Caio, [16/01/2023 22:07]
 INSERT INTO jutsu (nome, descricao, dano, chakra_gasto_por_uso) VALUES ('Jutsu de Substituição', 'Técnica ninja básica, onde em perigo o ninja troca sua posição com algum item, não se machucando', 10, 5); 
 INSERT INTO jutsu (nome, descricao, dano, chakra_gasto_por_uso) VALUES ('Sombra da Folha Dançante', 'Crie três clones da sombra e distraia o inimigo para conseguir chutá-lo ao ar', 10, 5);
 INSERT INTO jutsu (nome, descricao, dano, chakra_gasto_por_uso) VALUES ('Técnica de Invocação: Sapos', 'Você conseguiu ser reconhecido pelo Monte Myõboku. Agora pode invocar o Gamabunta (sapo chefe) para te ajudar em batalhas', 10, 5);
@@ -58,7 +57,6 @@ INSERT INTO jutsu (nome, descricao, dano, chakra_gasto_por_uso) VALUES ('Andar s
 
 /* Regioes */
 
-Caio, [16/01/2023 22:07]
 INSERT INTO regiao (nome, descricao) VALUES ('Monumento dos hokages', 'Montanha que tem tido os rostos de todos os Hokage esculpidas na pedra. Foi imaginado por Hashirama Senju como um símbolo de que os Hokage sempre zelarão pela aldeia. Para subir o monumento você precisar saber a subir paredes. Use o jutsu e aprecie a vista do topo da vila, quem sabe quais surpresas terão lá em cima.');
 INSERT INTO regiao (nome, descricao) VALUES ('Prédio governamental da folha', 'Prédio onde o hokage está na maior parte do tempo. Todas as decisões sobre a vila partem desse prédio.');
 INSERT INTO regiao (nome, descricao) VALUES ('Quintais do prédio governamental', 'Região cheia de plantas e flores para acalmar os chefes políticos da vila em momentos de descontração.');
@@ -219,7 +217,6 @@ INSERT INTO entregador_missao (nome_entregador) VALUES ('Kakashi');
 
 /* Missões */
 
-Caio, [16/01/2023 22:07]
 INSERT INTO instancia_missao (titulo_missao, nome_entregador, nome_personagem) VALUES ('Tutorial 1 - Converse com kakashi', 'Tsunade', 'naruto_username');
 INSERT INTO instancia_missao (titulo_missao, nome_entregador, nome_personagem) VALUES ('Derrote Itachi', 'Kakashi', 'naruto_username');
 INSERT INTO instancia_missao (titulo_missao, nome_entregador, nome_personagem) VALUES ('Derrote Kisame', 'Guy', 'naruto_username');
@@ -412,7 +409,6 @@ INSERT INTO instancia_item
 )
   VALUES('Kunai', 1, NULL, NULL, NULL,'Loja 1');
 
-Caio, [16/01/2023 22:07]
 INSERT INTO instancia_item
 (
   nome_item,
