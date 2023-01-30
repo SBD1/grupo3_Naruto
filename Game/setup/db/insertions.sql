@@ -173,9 +173,14 @@ INSERT INTO atacante
   id_inventario,
   tipo
 )
-  VALUES('Kisame', 30, 100, 90, 50, 80, NULL, 'inimigo');
+  VALUES('Kisame', 30, 200, 90, 50, 80, NULL, 'inimigo');
 
-
+-- INSERT INTO sabe_jutsu
+-- (
+--   nome_jutsu,
+--   nome_atacante
+-- )
+-- VALUES()
 /* Personagem Principal */
 
 INSERT INTO personagem_principal (
@@ -235,10 +240,7 @@ INSERT INTO inimigo (
 ) 
   VALUES ('Itachi', FALSE, 'Vamos batalhar!', 'Não é possível! Fui derrotado!', 'Você é muito fraco! Você morreu.', 250);
 
-INSERT INTO instancia_inimigo (
-  nome_inimigo
-)
-  VALUES ('Itachi');
+INSERT INTO instancia_inimigo (nome_inimigo, nome_regiao) VALUES ('Itachi', 'Monumento dos hokages');
 
 INSERT INTO inimigo (
   nome_inimigo,
@@ -251,9 +253,10 @@ INSERT INTO inimigo (
   VALUES ('Kisame', FALSE, 'Vamos batalhar!', 'Não é possível! Fui derrotado!', 'Você é muito fraco! Você morreu.', 100);
 
 INSERT INTO instancia_inimigo (
-  nome_inimigo
+  nome_inimigo,
+  nome_regiao
 )
-  VALUES ('Kisame');
+  VALUES ('Kisame', 'Prédio governamental da folha');
 
 
 /* Batalha */

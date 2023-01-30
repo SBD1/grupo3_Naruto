@@ -20,6 +20,7 @@ def initial_menu():
         print('1 - Criar novo jogo')
         print('2 - Mudar regiao')
         print('3 - ve regiao regiao')
+        print('4 - Procurar item na regiao')
         print('0 - Sair')
         tecla = input('Insira sua escolha: ')
         print()
@@ -29,7 +30,6 @@ def initial_menu():
                 print('\n\n')
                 continue
         elif tecla == '2':
-            # lista conexoes disponiveis
             playerData=run_query_fetchone(f"SELECT * from personagem WHERE nome='{player_name}'")
             query_response = run_query_fetchone(f"SELECT * from instancia_regiao where nome_regiao='{playerData['nome_regiao']}'")
             for item in list(query_response.values()):
@@ -40,7 +40,17 @@ def initial_menu():
         elif tecla == '3':
             personagem= run_query_fetchone(f"SELECT * from personagem where nome='{playerData['nome']}'")
             print(personagem)
-            sleep(10)
+        elif tecla== '4':
+            playerData=run_query_fetchone(f"SELECT * from personagem WHERE nome='{player_name}'")
+            query_response = run_query_fetchone(f"SELECT * from instancia_inimigo where nome_regiao='{playerData['nome_regiao']}'")
+            query_response = run_query_fetchone(f"SELECT * from atacante where nome_atacante='{query_response['nome_inimigo']}'")
+            print(f"'Deseje lutar com '{query_response['nome_atacante']}'?: sim ou nao")
+            if input()=='sim':
+                
+                breakpoint()
+
+
+        elif tecla == '0':
             exit_game()
             return
         else:
