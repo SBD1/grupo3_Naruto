@@ -8,6 +8,10 @@ def mudarRegiaoUsuario(novaregiao, user_name):
     sql = f"UPDATE personagem SET nome_regiao = '{novaregiao}' WHERE nome ='{user_name}';"
     run_update(sql)
 
+def mudarVida(vida, user_name):
+    sql = f"UPDATE atacante SET vida = '{vida}' WHERE nome_atacante ='{user_name}';"
+    run_update(sql)
+
 def get_user_info(nome_player):
     query_response = run_query_fetchone(
         f"SELECT * FROM personagem WHERE nome='{nome_player}';")
