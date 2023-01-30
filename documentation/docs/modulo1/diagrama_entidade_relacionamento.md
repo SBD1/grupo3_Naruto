@@ -6,10 +6,16 @@ O MER (Modelo Entidade Relacionamento) é utilizado para descrever os objetos do
 
 O DER (Diagrama Entidade-Relacionamento) é utilizado para representar em forma gráfica o que foi descrito no MER (Modelo Entidade Relacionamento).
 
+## Diagrama Entidade-Relacionamento (Versão 4.0)
+
+[![DER Versão 4](../images/diagrama-entidade-relacionamento-v4.png)](../images/diagrama-entidade-relacionamento-v4.png)
+[Clique aqui ou na imagem para ver o DER com mais detalhes](../images/diagrama-entidade-relacionamento-v4.png)
+
 ## Diagrama Entidade-Relacionamento (Versão v3.3)
 
 [![DER Versão 3.3](../images/diagrama-entidade-relacionamento-v33.jpg)](../images/diagrama-entidade-relacionamento-v33.jpg)
 [Clique aqui ou na imagem para ver o DER com mais detalhes](../images/diagrama-entidade-relacionamento-v33.jpg)
+
 ## Diagrama Entidade-Relacionamento (Versão v3.2)
 
 [![DER Versão 3.2](../images/diagrama-entidade-relacionamento-v32.png)](../images/diagrama-entidade-relacionamento-v32.png)
@@ -35,11 +41,12 @@ O DER (Diagrama Entidade-Relacionamento) é utilizado para representar em forma 
 
 ## Histórico de versões
 
-|    Data    | Versão |                                  Descrição                                  |        Autor         |
-| :--------: | :----: | :-------------------------------------------------------------------------: | :------------------: |
-| 28/11/2022 | `1.0`  |                        Criação da versão 1.0 do DER                         | Todos os integrantes |
-| 28/11/2022 | `2.0`  |                     Atualização do DER para versão 2.0                      |     João Coelho      |
-| 09/01/2022 | `3.0`  |                     Atualização do DER para versão 3.0                      | Todos os integrantes |
-| 15/01/2022 | `3.1`  | Adiciona Instância de Região e exclui entidade Elemento e missão Secundária |    [Maciel Júnior](https://github.com/macieljuniormax)    |
-| 16/01/2022 | `3.2`  |                            Remoção entidade Mapa                            |   Maurício Machado   |
-| 16/01/2022 | `3.3`  |                         Adição de atributos em instancia de região e venda                        |   [Maciel Júnior](https://github.com/macieljuniormax)  |
+|    Data    | Versão |                                  Descrição                                  |                          Autor                           |
+| :--------: | :----: | :-------------------------------------------------------------------------: | :------------------------------------------------------: |
+| 28/11/2022 | `1.0`  |                        Criação da versão 1.0 do DER                         |                   Todos os integrantes                   |
+| 28/11/2022 | `2.0`  |                     Atualização do DER para versão 2.0                      |                       João Coelho                        |
+| 09/01/2023 | `3.0`  |                     Atualização do DER para versão 3.0                      |                   Todos os integrantes                   |
+| 15/01/2023 | `3.1`  | Adiciona Instância de Região e exclui entidade Elemento e missão Secundária |   [Maciel Júnior](https://github.com/macieljuniormax)    |
+| 16/01/2023 | `3.2`  |                            Remoção entidade Mapa                            |                     Maurício Machado                     |
+| 16/01/2023 | `3.3`  |             Adição de atributos em instancia de região e venda              |   [Maciel Júnior](https://github.com/macieljuniormax)    |
+| 30/01/2023 | `4.0`  |                     Remoção da especificação de missões                     | [Mauricio Machado](https://github.com/MauricioMachadoFF) |
