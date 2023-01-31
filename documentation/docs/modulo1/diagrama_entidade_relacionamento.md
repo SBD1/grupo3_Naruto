@@ -6,6 +6,11 @@ O MER (Modelo Entidade Relacionamento) é utilizado para descrever os objetos do
 
 O DER (Diagrama Entidade-Relacionamento) é utilizado para representar em forma gráfica o que foi descrito no MER (Modelo Entidade Relacionamento).
 
+## Diagrama Entidade-Relacionamento (Versão 4.1)
+
+[![DER Versão 4](../images/diagrama-entidade-relacionamento-v41.jpg)](../images/diagrama-entidade-relacionamento-v41.jpg)
+[Clique aqui ou na imagem para ver o DER com mais detalhes](../images/diagrama-entidade-relacionamento-v41.jpg)
+
 ## Diagrama Entidade-Relacionamento (Versão 4.0)
 
 [![DER Versão 4](../images/diagrama-entidade-relacionamento-v4.png)](../images/diagrama-entidade-relacionamento-v4.png)
@@ -50,3 +55,4 @@ O DER (Diagrama Entidade-Relacionamento) é utilizado para representar em forma 
 | 16/01/2023 | `3.2`  |                            Remoção entidade Mapa                            |                     Maurício Machado                     |
 | 16/01/2023 | `3.3`  |             Adição de atributos em instancia de região e venda              |   [Maciel Júnior](https://github.com/macieljuniormax)    |
 | 30/01/2023 | `4.0`  |                     Remoção da especificação de missões                     | [Mauricio Machado](https://github.com/MauricioMachadoFF) |
+| 30/01/2023 | `4.1`  |                     Corrige atributos                   | [Maciel Júnior](https://github.com/macieljuniormax), João Coelho  |
