@@ -65,7 +65,7 @@ def run_insert(query):
 
 def insert_new_personagem(player_name):
     try:
-        run_insert(f"INSERT INTO personagem (nome,id_instancia_regiao,nome_regiao,tipo) VALUES('{player_name}','1','Prédio governamental da folha','atacante');")
+        run_insert(f"INSERT INTO personagem (nome,id_instancia_regiao,nome_regiao,tipo) VALUES('{player_name}','2','Prédio governamental da folha','atacante');")
     except:
         return []
 

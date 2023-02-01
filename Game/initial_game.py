@@ -22,6 +22,7 @@ def initial_menu():
         print('3 - ve regiao regiao')
         print('4 - Procurar item na regiao')
         print('5 - Aprender Jutsu')
+        print('6 - Vẽ as Views de Inimigo e PersonagemPrincipal')
         print('0 - Sair')
         tecla = input('Insira sua escolha: ')
         print()
@@ -77,7 +78,7 @@ def create_new_player():
         new_treinador = insert_new_personagem(player_name)
         run_insert(f"INSERT INTO inventario DEFAULT VALUES")
         id_inventario=run_query_fetchone(f"SELECT MAX(id) FROM inventario")
-        run_insert(f"INSERT INTO atacante (nome_atacante,nivel,vida,chakra,defesa,ataque,id_inventario,tipo) VALUES('{player_name}', 30, 100, 90, 50, 80, '{id_inventario['max']}', 'inimigo');")
+        run_insert(f"INSERT INTO atacante (nome_atacante,nivel,vida,chakra,defesa,ataque,id_inventario,tipo) VALUES('{player_name}', 30, 100, 90, 50, 80, '{id_inventario['max']}', 'personagem_principal');")
         run_insert(f"INSERT INTO personagem_principal(nome_personagem,dinheiro,experiencia,descricao) VALUES('{player_name}',0,0,'personagem jogavel');")
         if new_treinador == []:
             print(
@@ -127,6 +128,7 @@ def batalha(player_name):
                 query_sabe_jutsu=run_query_fetchone(f"SELECT * FROM jutsu where nome='{inputJutsu}'")
                 jogador.vida=jogador.vida-inimigo.ataque
                 inimigo.vida=inimigo.vida-query_sabe_jutsu['dano']
+            clean_bash()
             print(f"vida do jogador principal {jogador.vida} vida do inimigo {inimigo.vida}")
         endfight=datetime.now()
         timefight=endfight-startfight
