@@ -7,6 +7,7 @@ CREATE TYPE tipo_atacante as enum ('personagem_principal', 'inimigo');
 CREATE TYPE tipo_item as enum ('cura', 'ataque', 'defesa', 'chakra');
 CREATE TYPE tipo_resultado as enum ('vitoria', 'derrota', 'empate');
 
+
 CREATE TABLE IF NOT EXISTS regiao(
   nome VARCHAR(40),
   descricao VARCHAR(400),
@@ -16,15 +17,15 @@ CREATE TABLE IF NOT EXISTS regiao(
 
 CREATE TABLE IF NOT EXISTS instancia_regiao(
   id SERIAL,
-  nome_regiao VARCHAR(40) NOT NULL,
+  nome_regiao VARCHAR(40),
   norte INTEGER,
-  nome_norte VARCHAR(40) NOT NULL,
+  nome_norte VARCHAR(40),
   sul INTEGER,
-  nome_sul VARCHAR(40) NOT NULL,
+  nome_sul VARCHAR(40),
   leste INTEGER,
-  nome_leste VARCHAR(40) NOT NULL,
+  nome_leste VARCHAR(40),
   oeste INTEGER,
-  nome_oeste VARCHAR(40) NOT NULL,
+  nome_oeste VARCHAR(40),
   
   CONSTRAINT instancia_regiao_pk PRIMARY KEY(id, nome_regiao),
   CONSTRAINT instancia_regiao_norte_fk FOREIGN KEY (norte, nome_norte) REFERENCES instancia_regiao (id, nome_regiao),
@@ -94,7 +95,7 @@ CREATE TABLE IF NOT EXISTS entregador_missao(
   nome_entregador VARCHAR(40),
 
   CONSTRAINT entregador_pk PRIMARY KEY(nome_entregador),
-  CONSTRAINT entregador_personagem_fk FOREIGN KEY (nome_entregador) REFERENCES personagem (nome) 
+  CONSTRAINT entregador_personagem_fk FOREIGN KEY (nome_entregador) REFERENCES personagem (nome)
 );
 
 CREATE TABLE IF NOT EXISTS inventario(
@@ -144,23 +145,8 @@ CREATE TABLE IF NOT EXISTS loja(
   nome_regiao VARCHAR(40) NOT NULL,
 
   CONSTRAINT loja_pk PRIMARY KEY(nome),
-  CONSTRAINT loja_regiao_fk FOREIGN KEY (id_instancia_regiao, nome_regiao) REFERENCES regiao (id, nome_regiao)
+  CONSTRAINT loja_regiao_fk FOREIGN KEY (id_instancia_regiao, nome_regiao) REFERENCES instancia_regiao (id, nome_regiao)
 );
-
-CREATE TABLE IF NOT EXISTS venda(
-  id SERIAL,
-  id_instancia_item INTEGER NOT NULL,
-  nome_item VARCHAR(40) NOT NULL,
-  nome_loja VARCHAR(40) NOT NULL,
-  nome_personagem VARCHAR(40) NOT NULL, 
-  valor_compra INTEGER NOT NULL, 
-
-  CONSTRAINT venda_pk PRIMARY KEY(id),
-  CONSTRAINT venda_instancia_item_fk FOREIGN KEY (id_instancia_item, nome_item) REFERENCES instancia_item (id, nome_item),
-  CONSTRAINT venda_loja_fk FOREIGN KEY (nome_loja) REFERENCES loja (nome),
-  CONSTRAINT venda_personagem_fk FOREIGN KEY (nome_personagem) REFERENCES per (nome)
-);
-
 
 CREATE TABLE IF NOT EXISTS personagem_principal(
   nome_personagem VARCHAR(40),
@@ -181,6 +167,21 @@ CREATE TABLE IF NOT EXISTS personagem_principal(
   CONSTRAINT personagem_atacante FOREIGN KEY (nome_personagem) REFERENCES atacante (nome_atacante)
 )
 
+
+CREATE TABLE IF NOT EXISTS venda(
+  id SERIAL,
+  id_instancia_item INTEGER NOT NULL,
+  nome_item VARCHAR(40) NOT NULL,
+  nome_loja VARCHAR(40) NOT NULL,
+  nome_personagem VARCHAR(40) NOT NULL, 
+  valor_compra INTEGER NOT NULL, 
+
+  CONSTRAINT venda_pk PRIMARY KEY(id),
+  CONSTRAINT venda_instancia_item_fk FOREIGN KEY (id_instancia_item, nome_item) REFERENCES instancia_item (id, nome_item),
+  CONSTRAINT venda_loja_fk FOREIGN KEY (nome_loja) REFERENCES loja (nome),
+  CONSTRAINT venda_personagem_fk FOREIGN KEY (nome_personagem) REFERENCES personagem_principal (nome_personagem)
+);
+
 CREATE TABLE IF NOT EXISTS inimigo(
   nome_inimigo VARCHAR(40),
   e_boss BOOLEAN NOT NULL DEFAULT FALSE,
@@ -196,9 +197,6 @@ CREATE TABLE IF NOT EXISTS inimigo(
 CREATE TABLE IF NOT EXISTS instancia_inimigo(
   id SERIAL,
   nome_inimigo VARCHAR(40),
-  id_instancia_regiao INTEGER,
-  nome_regiao VARCHAR(40),
-
 
   CONSTRAINT instancia_inimigo_pk PRIMARY KEY(id, nome_inimigo),
   CONSTRAINT instancia_inimigo_inimigo_fk FOREIGN KEY (nome_inimigo) REFERENCES inimigo (nome_inimigo)
@@ -210,6 +208,7 @@ CREATE TABLE IF NOT EXISTS batalha(
   nome_personagem_principal VARCHAR(40),
   nome_inimigo VARCHAR(40),
   id_instancia_inimigo INTEGER,
+  finalizada boolean default false,
 
   CONSTRAINT batalha_pk PRIMARY KEY(id),
   CONSTRAINT batalha_personagem_principal_fk FOREIGN KEY (nome_personagem_principal) REFERENCES personagem_principal (nome_personagem),
@@ -240,17 +239,16 @@ CREATE TABLE IF NOT EXISTS missao(
   descricao VARCHAR(1200),
   experiencia_ganha INTEGER,
   nivel_necessario INTEGER,
-  ataque_ganho
-  vida_ganha
-  defesa_ganha
-  chakra_ganho
-  nivel_necessario
+  ataque_ganho INTEGER,
+  vida_ganha INTEGER,
+  defesa_ganha INTEGER,
+  chakra_ganho INTEGER,
   id_instancia_inimigo INTEGER,
   nome_inimigo VARCHAR(40),
   id_instancia_item INTEGER,
   nome_item VARCHAR(40),
 
-  CONSTRAINT geral_pk PRIMARY KEY (titulo_missao),
+  CONSTRAINT geral_pk PRIMARY KEY (titulo),
   CONSTRAINT geral_instancia_item_fk FOREIGN KEY (id_instancia_item, nome_item) REFERENCES instancia_item (id, nome_item),
   CONSTRAINT geral_instancia_inimigo_fk FOREIGN KEY (id_instancia_inimigo, nome_inimigo) REFERENCES instancia_inimigo (id, nome_inimigo)
 )
@@ -264,5 +262,5 @@ CREATE TABLE IF NOT EXISTS instancia_missao(
   CONSTRAINT instancia_missao_pk PRIMARY KEY (id),
   CONSTRAINT instancia_missao_missao_fk FOREIGN KEY (titulo_missao) REFERENCES missao (titulo),
   CONSTRAINT instancia_missao_entregador_fk FOREIGN KEY (nome_entregador) REFERENCES entregador_missao (nome_entregador),
-  CONSTRAINT instancia_missao_personagem_principal_fk FOREIGN KEY (nome_personagem) REFERENCES personagem_principal (nome_personagem)
+  CONSTRAINT instancia_missao_personagem_principal_fk FOREIGN KEY (nome_personagem) REFERENCES personagem_principal (nome_personagem) ON DELETE RESTRICT
 )
