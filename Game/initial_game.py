@@ -42,8 +42,11 @@ def initial_menu():
             personagem= run_query_fetchone(f"SELECT * from personagem where nome='{playerData['nome']}'")
             print(personagem)
         elif tecla== '4':
-            
-            batalha(player_name)
+            input4=input('Procurar lutador(1)|Procurar item(2)')
+            if input4== '1':
+                batalha(player_name)
+            if input4== '2':
+                BuscarItem(player_name)
         elif tecla== '5':
                 jutsuData=run_query_fetchall(f"SELECT * from jutsu")
                 for item in  jutsuData:
@@ -72,7 +75,9 @@ def create_new_player():
         player_name = input(
             'Insira o nome do personagem (ou insira 0 para voltar): ')
         new_treinador = insert_new_personagem(player_name)
-        run_insert(f"INSERT INTO atacante (nome_atacante,nivel,vida,chakra,defesa,ataque,id_inventario,tipo) VALUES('{player_name}', 30, 100, 90, 50, 80, NULL, 'inimigo');")
+        run_insert(f"INSERT INTO inventario DEFAULT VALUES")
+        id_inventario=run_query_fetchone(f"SELECT MAX(id) FROM inventario")
+        run_insert(f"INSERT INTO atacante (nome_atacante,nivel,vida,chakra,defesa,ataque,id_inventario,tipo) VALUES('{player_name}', 30, 100, 90, 50, 80, '{id_inventario['max']}', 'inimigo');")
         run_insert(f"INSERT INTO personagem_principal(nome_personagem,dinheiro,experiencia,descricao) VALUES('{player_name}',0,0,'personagem jogavel');")
         if new_treinador == []:
             print(
@@ -136,7 +141,16 @@ def batalha(player_name):
             return
 
 
-def BuscarItem()
+def BuscarItem(player_name):
+    playerData=run_query_fetchone(f"SELECT * from personagem WHERE nome='{player_name}'")
+    playerAtacante=run_query_fetchone(f"SELECT * from atacante WHERE nome_atacante='{player_name}'")
+    instanciaitem=run_query_fetchall(f"SELECT * from instancia_item where nome_regiao ='{playerData['nome_regiao']}'")
+    for item in  instanciaitem:
+        print(item['nome_item'])
+    ent=input('Qual item deseja pegar? ou 0 para sair: ')
+    if (ent!='0'):
+        run_update(f"UPDATE instancia_item SET id_inventario = '{playerAtacante['id_inventario']}' WHERE nome_item ='{ent}';")
+    return
 
 class TupleObject:
     def __init__(self, x, y):
