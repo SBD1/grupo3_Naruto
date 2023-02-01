@@ -57,3 +57,15 @@ CREATE OR REPLACE VIEW dados_item AS
     INNER JOIN instancia_item ON item.nome = instancia_item.nome_item;
 
 SELECT * FROM dados_item;
+
+-- View sobre informações de batalha
+CREATE OR REPLACE VIEW dados_batalha AS
+    SELECT batalha.id AS "ID Batalha",
+    batalha.tempo_decorrido AS "Tempo Decorrido",
+    batalha.resultado AS "Resultado",
+    batalha.nome_personagem_principal AS "Nome Personagem Principal",
+    batalha.nome_inimigo AS "Nome Inimigo",
+    batalha.id_instancia_inimigo AS "ID Instância Inimigo"
+    FROM batalha;
+
+SELECT * FROM dados_batalha;
