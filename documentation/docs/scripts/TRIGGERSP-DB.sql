@@ -23,23 +23,34 @@ $$ LANGUAGE plpgsql;
 
 CREATE OR REPLACE TRIGGER inimigo_morreu AFTER UPDATE ON atacante FOR EACH ROW EXECUTE PROCEDURE inimigo_morto_func();*/
 
-CREATE OR REPLACE FUNCTION jogador_morto_func() RETURNS TRIGGER AS 
-$$
+CREATE OR REPLACE FUNCTION jogador_morto_func()
+RETURNS TRIGGER AS $jogador_morto_func$
 DECLARE 
   vida_personagem INTEGER;
 BEGIN
-  SELECT total_vida FROM personagem_principal WHERE nome_personagem = NEW.nome_personagem AS vida_personagem 
+  SELECT vida_atual INTO vida_personagem FROM personagem_principal WHERE nome_personagem = NEW.nome_personagem;
 
-  IF vida_personagem <= 0
-    UPDATE batalha SET resultado = "derrota", finalizada = TRUE WHERE nome_personagem_principal = NEW.nome_personagem AND finalizada = FALSE
-    
-    UPDATE personagem AS p
-    SET id_instancia_regiao = "1", nome_regiao = "Regiao padrão" 
-    WHERE (p.nome_personagem = NEW.nome_personagem_principal);
+  IF vida_personagem <= 0 THEN
+    UPDATE batalha 
+    SET resultado = 'derrota', 
+        finalizada = true 
+    WHERE nome_personagem_principal = NEW.nome_personagem 
+    AND finalizada = false;
+
+    UPDATE personagem
+    SET id_instancia_regiao = 1, 
+        nome_regiao = 'Prédio governamental da folha'
+    from personagem  p
+    	inner join atacante a
+    		on p.nome = a.nome_atacante
+    	inner join personagem_principal pp
+    		on a.nome_atacante = pp.nome_personagem;
+  END IF;
 
   RETURN NEW;
 END;
-$$ LANGUAGE plpgsql;
+$jogador_morto_func$ LANGUAGE plpgsql;
 
-
-CREATE OR REPLACE TRIGGER personagem_morreu AFTER UPDATE ON personagem_principal FOR EACH ROW EXECUTE PROCEDURE jogador_morto_func();
+CREATE OR REPLACE TRIGGER personagem_morreu 
+AFTER UPDATE ON personagem_principal 
+FOR EACH ROW EXECUTE FUNCTION jogador_morto_func();
