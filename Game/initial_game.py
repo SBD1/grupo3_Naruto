@@ -42,6 +42,7 @@ def initial_menu():
             personagem= run_query_fetchone(f"SELECT * from personagem where nome='{playerData['nome']}'")
             print(personagem)
         elif tecla== '4':
+            
             batalha(player_name)
         elif tecla== '5':
                 jutsuData=run_query_fetchall(f"SELECT * from jutsu")
@@ -94,6 +95,7 @@ def batalha(player_name):
     query_response = run_query_fetchone(f"SELECT * from atacante where nome_atacante='{query_response}'")
     print(f"'Deseje lutar com '{query_response['nome_atacante']}'?: sim ou nao")
     if input()=='sim':
+        ##Vida e ataque do jogador
         inimigo=run_query_fetchone(f" select  get_ataque_vida_personagem_do_personagemprincipal_ou_inimigo('{query_response_instancia_inimigo['nome_inimigo']}')")
         inimigo=inimigo['get_ataque_vida_personagem_do_personagemprincipal_ou_inimigo']
         inimigo=eval(inimigo)
@@ -133,6 +135,8 @@ def batalha(player_name):
             run_insert(f"INSERT INTO batalha (nome_personagem_principal,nome_inimigo,id_instancia_inimigo,tempo_decorrido,resultado)VALUES ('{playerData['nome_atacante']}', '{query_response['nome_atacante']}', '{query_response_instancia_inimigo['id']}', {timefight.seconds}, 'empate');")
             return
 
+
+def BuscarItem()
 
 class TupleObject:
     def __init__(self, x, y):
