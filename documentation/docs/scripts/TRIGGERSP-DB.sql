@@ -1,28 +1,4 @@
-/*CREATE OR REPLACE FUNCTION inimigo_morto_func() RETURNS TRIGGER AS 
-$$
-DECLARE 
-  vida_inimigo INTEGER;
-BEGIN
-
-  SELECT vida FROM atacante WHERE nome_atacante = NEW.nome_atacante AND tipo_atacante = "inimigo" AS vida_inimigo
-  SELECT vida FROM atacante as a
-    INNER JOIN inimigo AS i
-      ON i.nome_inimigo = a.nome_atacante
-    INNER JOIN instancia_inimigo as ii
-      ON ii.nome_inimigo = i.nome_inimigo
-    WHERE (ii.nome_inimigo = NEW.nome_inimigo AND ii.id = NEW.id_instancia_inimigo) AS vida_inimigo
-
-  IF vida_inimigo <= 0
-    UPDATE batalha SET resultado = "vitoria", finalizada = TRUE
-    FROM instancia_inimigo as i
-      WHERE (nome_inimigo = i.nome_inimigo AND id_instancia_inimigo = NEW.id_instancia_inimigo)
-
-  RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
-
-CREATE OR REPLACE TRIGGER inimigo_morreu AFTER UPDATE ON atacante FOR EACH ROW EXECUTE PROCEDURE inimigo_morto_func();*/
-
+-- ------------ Trigger quando o jogador morre ------------------
 CREATE OR REPLACE FUNCTION jogador_morto_func()
 RETURNS TRIGGER AS $jogador_morto_func$
 DECLARE 
@@ -54,3 +30,94 @@ $jogador_morto_func$ LANGUAGE plpgsql;
 CREATE OR REPLACE TRIGGER personagem_morreu 
 AFTER UPDATE ON personagem_principal 
 FOR EACH ROW EXECUTE FUNCTION jogador_morto_func();
+-- --------------------------------------------------------------
+
+-- ============ Garnte integridade da tabela item ===============
+-- --- Verifica existência do item ao inserir na tabela cura ----
+CREATE OR REPLACE FUNCTION valida_tipo_cura()
+RETURNS TRIGGER AS $$
+DECLARE
+  item_tipo_correto INTEGER;
+BEGIN
+  SELECT COUNT(*) INTO item_tipo_correto
+  FROM item
+  WHERE nome = NEW.nome_item;
+  IF item_tipo_correto = 0 THEN
+    RAISE EXCEPTION 'Item ainda não presente na tabela de itens. Por favor insira um item válido na tabela itens antes de inserir na tabela cura.';
+  END IF;
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER valida_tipo_cura
+BEFORE INSERT ON cura
+FOR EACH ROW
+EXECUTE FUNCTION valida_tipo_cura();
+-- --------------------------------------------------------------
+
+-- --- Verifica existência do item ao inserir na tabela ataque --
+CREATE OR REPLACE FUNCTION valida_tipo_ataque()
+RETURNS TRIGGER AS $$
+DECLARE
+  item_tipo_correto INTEGER;
+BEGIN
+  SELECT COUNT(*) INTO item_tipo_correto
+  FROM item
+  WHERE nome = NEW.nome_item;
+  IF item_tipo_correto = 0 THEN
+    RAISE EXCEPTION 'Item ainda não presente na tabela de itens. Por favor insira um item válido na tabela itens antes de inserir na tabela ataque.';
+  END IF;
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER valida_tipo_ataque
+BEFORE INSERT ON ataque
+FOR EACH ROW
+EXECUTE FUNCTION valida_tipo_ataque();
+-- --------------------------------------------------------------
+
+-- -- Verifica existência do item ao inserir na tabela defesa ---
+CREATE OR REPLACE FUNCTION valida_tipo_defesa()
+RETURNS TRIGGER AS $$
+DECLARE
+  item_tipo_correto INTEGER;
+BEGIN
+  SELECT COUNT(*) INTO item_tipo_correto
+  FROM item
+  WHERE nome = NEW.nome_item;
+  IF item_tipo_correto = 0 THEN
+    RAISE EXCEPTION 'Item ainda não presente na tabela de itens. Por favor insira um item válido na tabela itens antes de inserir na tabela defesa.';
+  END IF;
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER valida_tipo_defesa
+BEFORE INSERT ON defesa
+FOR EACH ROW
+EXECUTE FUNCTION valida_tipo_defesa();
+-- --------------------------------------------------------------
+
+-- -- Verifica existência do item ao inserir na tabela chakra ---
+CREATE OR REPLACE FUNCTION valida_tipo_chakra()
+RETURNS TRIGGER AS $$
+DECLARE
+  item_tipo_correto INTEGER;
+BEGIN
+  SELECT COUNT(*) INTO item_tipo_correto
+  FROM item
+  WHERE nome = NEW.nome_item;
+  IF item_tipo_correto = 0 THEN
+    RAISE EXCEPTION 'Item ainda não presente na tabela de itens. Por favor insira um item válido na tabela itens antes de inserir na tabela chakra.';
+  END IF;
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER valida_tipo_chakra
+BEFORE INSERT ON chakra
+FOR EACH ROW
+EXECUTE FUNCTION valida_tipo_chakra();
+-- --------------------------------------------------------------
+-- ==============================================================
