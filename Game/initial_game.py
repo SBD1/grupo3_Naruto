@@ -1,7 +1,7 @@
 from time import sleep
 from database import get_user_info, insert_new_personagem,mudarRegiaoUsuario,run_query_fetchone,run_update,run_insert,run_query_fetchall,mudarVida
 from utils import *
-
+from datetime import *
 
 def welcome_screen():
     print(r""" Naruto """)
@@ -94,23 +94,50 @@ def batalha(player_name):
     query_response = run_query_fetchone(f"SELECT * from atacante where nome_atacante='{query_response}'")
     print(f"'Deseje lutar com '{query_response['nome_atacante']}'?: sim ou nao")
     if input()=='sim':
-        while(query_response['vida']>=0 and playerData['vida']>=0):
+        inimigo=run_query_fetchone(f" select  get_ataque_vida_personagem_do_personagemprincipal_ou_inimigo('{query_response_instancia_inimigo['nome_inimigo']}')")
+        inimigo=inimigo['get_ataque_vida_personagem_do_personagemprincipal_ou_inimigo']
+        inimigo=eval(inimigo)
+        inimigo=TupleObject(*inimigo)
+
+        ##Vida e ataque do jogador
+        jogador=run_query_fetchone(f" select  get_ataque_vida_personagem_do_personagemprincipal_ou_inimigo('{player_name}')")
+        jogador=jogador['get_ataque_vida_personagem_do_personagemprincipal_ou_inimigo']
+        jogador=eval(jogador)
+        jogador=TupleObject(*jogador)
+        while(inimigo.vida>=0 and jogador.vida>=0):
+            startfight=datetime.now()
             breakpoint()
             entrada=input('Ataque normal(1) e ataque de chakra(2)')
             if entrada=='1':
-                playerData['vida']=playerData['vida']-query_response['ataque']
-                # mudarVida(playerData['vida'],playerData['nome_atacante'])
-                query_response['vida']=query_response['vida']-playerData['ataque']
-                # mudarVida(query_response['vida'],query_response['nome_atacante'])
+                jogador.vida=jogador.vida-inimigo.ataque
+                inimigo.vida=inimigo.vida-jogador.ataque
             if entrada=='2':
-                query_sabe_jutsu = run_query_fetchone(f"SELECT * from sabe_jutsu where nome_atacante='{playerData['nome']}'")
-                query_sabe_jutsu=run_query_fetchone(f"SELECT FROM jutsu where nome = '{query_sabe_jutsu['nome_jutsu']}'")
-                playerData['vida']=playerData['vida']-query_response['ataque']
-                query_response['vida']=query_response['vida']-query_sabe_jutsu['dano']
-            print(f"vida do jogador principal {playerData['vida']} vida do inimigo {query_response['vida']}")
-        # if query_response['vida']>0 and playerData['vida']<0:
-        #     run_insert(f"INSERT INTO batalha (nome_personagem_principal,nome_inimigo,id_instancia_inimigo,tempo_decorrido,resultado)VALUES ('{playerData['nome']}', '{query_response['ataque']}', '{query_response_instancia_inimigo['id']}, 200, 'perdeu');")
-        #     break
-        if query_response['vida']>0 and playerData['vida']<0:
-            run_insert(f"INSERT INTO batalha (nome_personagem_principal,nome_inimigo,id_instancia_inimigo,tempo_decorrido,resultado)VALUES ('{playerData['nome_atacante']}', '{query_response['nome_atacante']}', '{query_response_instancia_inimigo['id']}', 200, 'derrota');")
+                query_sabe_jutsu = run_query_fetchall(f"SELECT * from sabe_jutsu where nome_atacante='{playerData['nome_atacante']}'")
+                for item in query_sabe_jutsu:
+                    print(item)
+                inputJutsu= input("Digite o nome do jutsu que deseja usar: ")
+                breakpoint()
+                query_sabe_jutsu=run_query_fetchone(f"SELECT * FROM jutsu where nome='{inputJutsu}'")
+                jogador.vida=jogador.vida-inimigo.ataque
+                inimigo.vida=inimigo.vida-query_sabe_jutsu['dano']
+            print(f"vida do jogador principal {jogador.vida} vida do inimigo {inimigo.vida}")
+        endfight=datetime.now()
+        timefight=endfight-startfight
+        if inimigo.vida>0 and jogador.vida<0:
+            run_insert(f"INSERT INTO batalha (nome_personagem_principal,nome_inimigo,id_instancia_inimigo,tempo_decorrido,resultado)VALUES ('{playerData['nome_atacante']}', '{query_response['nome_atacante']}', '{query_response_instancia_inimigo['id']}', {timefight.seconds}, 'derrota');")
             return
+        if inimigo.vida<0 and jogador.vida>0:
+            run_insert(f"INSERT INTO batalha (nome_personagem_principal,nome_inimigo,id_instancia_inimigo,tempo_decorrido,resultado)VALUES ('{playerData['nome_atacante']}', '{query_response['nome_atacante']}', '{query_response_instancia_inimigo['id']}', {timefight.seconds}, 'vitoria');")
+            return
+        else:
+            run_insert(f"INSERT INTO batalha (nome_personagem_principal,nome_inimigo,id_instancia_inimigo,tempo_decorrido,resultado)VALUES ('{playerData['nome_atacante']}', '{query_response['nome_atacante']}', '{query_response_instancia_inimigo['id']}', {timefight.seconds}, 'empate');")
+            return
+
+
+class TupleObject:
+    def __init__(self, x, y):
+        self.ataque = x
+        self.vida = y
+
+t = (80, 200)
+obj = TupleObject(*t)

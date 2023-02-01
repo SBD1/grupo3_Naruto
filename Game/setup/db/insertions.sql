@@ -175,12 +175,6 @@ INSERT INTO atacante
 )
   VALUES('Kisame', 30, 200, 90, 50, 80, NULL, 'inimigo');
 
--- INSERT INTO sabe_jutsu
--- (
---   nome_jutsu,
---   nome_atacante
--- )
--- VALUES()
 /* Personagem Principal */
 
 INSERT INTO personagem_principal (
@@ -423,6 +417,17 @@ INSERT INTO instancia_item
 )
   VALUES('Shuriken', 2, NULL, NULL, NULL, 'Loja 1');
 
+
+INSERT INTO instancia_item
+(
+  nome_item,
+  quantidade,
+  id_inventario,
+  id_instancia_regiao,
+  nome_regiao,
+  nome_loja
+)
+  VALUES('Shuriken', 2, NULL, NULL, 'Prédio governamental da folha', 'Loja 1');
 
 INSERT INTO venda
 (
