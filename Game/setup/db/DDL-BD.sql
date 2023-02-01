@@ -181,9 +181,11 @@ CREATE TABLE IF NOT EXISTS inimigo(
 CREATE TABLE IF NOT EXISTS instancia_inimigo(
   id SERIAL,
   nome_inimigo VARCHAR(40),
+  nome_regiao VARCHAR(40),
 
   CONSTRAINT instancia_inimigo_pk PRIMARY KEY(id, nome_inimigo),
-  CONSTRAINT instancia_inimigo_inimigo_fk FOREIGN KEY (nome_inimigo) REFERENCES inimigo (nome_inimigo)
+  CONSTRAINT instancia_inimigo_inimigo_fk FOREIGN KEY (nome_inimigo) REFERENCES inimigo(nome_inimigo),
+  CONSTRAINT instancia_inimigo_nome_regiao_fk FOREIGN KEY (nome_regiao) REFERENCES regiao(nome)
 );
 
 CREATE TABLE IF NOT EXISTS batalha(

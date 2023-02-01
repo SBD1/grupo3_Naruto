@@ -286,8 +286,7 @@ INSERT INTO atacante
   id_inventario,
   tipo
 )
-  VALUES('Kisame', 30, 100, 90, 50, 80, NULL, 'inimigo');
-
+  VALUES('Kisame', 30, 200, 90, 50, 80, NULL, 'inimigo');
 
 /* Personagem Principal */
 
@@ -348,10 +347,7 @@ INSERT INTO inimigo (
 ) 
   VALUES ('Itachi', FALSE, 'Vamos batalhar!', 'Não é possível! Fui derrotado!', 'Você é muito fraco! Você morreu.', 250);
 
-INSERT INTO instancia_inimigo (
-  nome_inimigo
-)
-  VALUES ('Itachi');
+INSERT INTO instancia_inimigo (nome_inimigo, nome_regiao) VALUES ('Itachi', 'Monumento dos hokages');
 
 INSERT INTO inimigo (
   nome_inimigo,
@@ -364,9 +360,10 @@ INSERT INTO inimigo (
   VALUES ('Kisame', FALSE, 'Vamos batalhar!', 'Não é possível! Fui derrotado!', 'Você é muito fraco! Você morreu.', 100);
 
 INSERT INTO instancia_inimigo (
-  nome_inimigo
+  nome_inimigo,
+  nome_regiao
 )
-  VALUES ('Kisame');
+  VALUES ('Kisame', 'Prédio governamental da folha');
 
 
 /* Batalha */
@@ -533,6 +530,17 @@ INSERT INTO instancia_item
 )
   VALUES('Shuriken', 2, NULL, NULL, NULL, 'Loja 1');
 
+
+INSERT INTO instancia_item
+(
+  nome_item,
+  quantidade,
+  id_inventario,
+  id_instancia_regiao,
+  nome_regiao,
+  nome_loja
+)
+  VALUES('Shuriken', 2, NULL, NULL, 'Prédio governamental da folha', 'Loja 1');
 
 INSERT INTO venda
 (
