@@ -4,6 +4,11 @@
 
 Este documento tem como objetivo representar os dados da aplicação, em formato de tabelas, que serão futuramente implementados em um sistema gerenciador de banco de dados.
 
+## Versão 3.1
+
+[![Imagem de capa](../images/modelo-relacional-31.jpg)](../images/modelo-relacional-31.jpg)
+[Clique aqui ou na imagem para ver o modelo relacional com mais detalhes](../images/modelo-relacional-31.jpg)
+
 ## Versão 3.0
 
 [![Imagem de capa](../images/modelo-relacional-3.png)](../images/modelo-relacional-3.png)
@@ -56,3 +61,4 @@ Este documento tem como objetivo representar os dados da aplicação, em formato
 | 16/01/2023 | `2.2`  |                          Remoção tabela mapa                          |                                            Maurício Machado                                             |
 | 16/01/2023 | `2.3`  | Adição de atributos em instancia de região, venda e instancia de item |                           [Maciel Júnior](https://github.com/macieljuniormax)                           |
 | 30/01/2023 | `3.0`  |                 Remoção de especialização de missões                  |                        [Mauricio Machado](https://github.com/MauricioMachadoFF)                         |
+| 31/01/2023 | `3.1`  |                 Corrige atributos conforme o MER               |[Maciel Júnior](https://github.com/macieljuniormax), João Coelho                        |
