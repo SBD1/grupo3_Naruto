@@ -43,3 +43,17 @@ CREATE OR REPLACE VIEW dados_inimigo AS
     INNER JOIN instancia_inimigo ON inimigo.nome_inimigo = instancia_inimigo.nome_inimigo;
 
 SELECT * FROM dados_inimigo;
+
+-- View dos dados completos de itens
+CREATE OR REPLACE VIEW dados_item AS
+    SELECT item.nome AS "Nome Item",
+    item.descricao AS "Descrição Item",
+    item.desaparece AS "Desaparece",
+    item.tipo AS "Tipo Item",
+    instancia_item.quantidade AS "Quantidade",
+    instancia_item.nome_regiao AS "Nome Região",
+    instancia_item.nome_loja AS "Nome Loja"
+    FROM item
+    INNER JOIN instancia_item ON item.nome = instancia_item.nome_item;
+
+SELECT * FROM dados_item;
