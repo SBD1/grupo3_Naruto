@@ -21,3 +21,7 @@ nav:
     - SQL:
       - DDL: modulo2/sql/ddl.md
       - DML: modulo2/sql/dml.md
+  - Módulo 3:
+    - SQL:
+      - Triggers e Stored Procedures: modulo3/triggers.md
+      - Views: modulo3/views.md
