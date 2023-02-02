@@ -1,4 +1,4 @@
--- ------------ Trigger quando o jogador morre ------------------
+-- ------------------- Trigger quando o jogador morre -----------------------
 CREATE OR REPLACE FUNCTION jogador_morto_func()
 RETURNS TRIGGER AS $jogador_morto_func$
 DECLARE 
@@ -30,10 +30,10 @@ $jogador_morto_func$ LANGUAGE plpgsql;
 CREATE OR REPLACE TRIGGER personagem_morreu 
 AFTER UPDATE ON personagem_principal 
 FOR EACH ROW EXECUTE FUNCTION jogador_morto_func();
--- --------------------------------------------------------------
+-- --------------------------------------------------------------------------
 
--- ============ Garnte integridade da tabela item ===============
--- --- Verifica existência do item ao inserir na tabela cura ----
+-- ================== Garnte integridade da tabela item =====================
+-- -------- Verifica existência do item ao inserir na tabela cura -----------
 CREATE OR REPLACE FUNCTION valida_tipo_cura()
 RETURNS TRIGGER AS $$
 DECLARE
@@ -53,9 +53,9 @@ CREATE TRIGGER valida_tipo_cura
 BEFORE INSERT ON cura
 FOR EACH ROW
 EXECUTE FUNCTION valida_tipo_cura();
--- --------------------------------------------------------------
+-- --------------------------------------------------------------------------
 
--- --- Verifica existência do item ao inserir na tabela ataque --
+-- -------- Verifica existência do item ao inserir na tabela ataque ---------
 CREATE OR REPLACE FUNCTION valida_tipo_ataque()
 RETURNS TRIGGER AS $$
 DECLARE
@@ -75,9 +75,9 @@ CREATE TRIGGER valida_tipo_ataque
 BEFORE INSERT ON ataque
 FOR EACH ROW
 EXECUTE FUNCTION valida_tipo_ataque();
--- --------------------------------------------------------------
+-- --------------------------------------------------------------------------
 
--- -- Verifica existência do item ao inserir na tabela defesa ---
+-- ---------- Verifica existência do item ao inserir na tabela defesa -------
 CREATE OR REPLACE FUNCTION valida_tipo_defesa()
 RETURNS TRIGGER AS $$
 DECLARE
@@ -97,9 +97,9 @@ CREATE TRIGGER valida_tipo_defesa
 BEFORE INSERT ON defesa
 FOR EACH ROW
 EXECUTE FUNCTION valida_tipo_defesa();
--- --------------------------------------------------------------
+-- --------------------------------------------------------------------------
 
--- -- Verifica existência do item ao inserir na tabela chakra ---
+-- --------- Verifica existência do item ao inserir na tabela chakra --------
 CREATE OR REPLACE FUNCTION valida_tipo_chakra()
 RETURNS TRIGGER AS $$
 DECLARE
@@ -119,5 +119,61 @@ CREATE TRIGGER valida_tipo_chakra
 BEFORE INSERT ON chakra
 FOR EACH ROW
 EXECUTE FUNCTION valida_tipo_chakra();
--- --------------------------------------------------------------
--- ==============================================================
+-- --------------------------------------------------------------------------
+-- ==========================================================================
+
+-- ============ Garnte integridade da tabela personagem =====================
+-- - Verifica existência do personagem ao inserir na tabela entregador ------
+CREATE OR REPLACE FUNCTION valida_tipo_entregador_missao()
+RETURNS TRIGGER AS $$
+DECLARE
+  personagem_tipo_correto INTEGER;
+BEGIN
+  SELECT COUNT(*) INTO personagem_tipo_correto
+  FROM personagem
+  WHERE nome = NEW.nome_entregador;
+
+  IF personagem_tipo_correto = 0 THEN
+    RAISE EXCEPTION 'Esse personagem ainda não está na tabela personagem';
+  ELSE
+    IF (SELECT tipo FROM personagem WHERE nome = NEW.nome_entregador) != 'entregador_de_missao' THEN
+      RAISE EXCEPTION 'Esse personagem não é do tipo entregador de missão';
+    END IF;
+  END IF;
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER valida_tipo_entregador_missao
+BEFORE INSERT ON entregador_missao
+FOR EACH ROW
+EXECUTE FUNCTION valida_tipo_entregador_missao();
+-- --------------------------------------------------------------------------
+
+-- - Verifica existência do personagem ao inserir na tabela atacante ------
+CREATE OR REPLACE FUNCTION valida_tipo_atacante()
+RETURNS TRIGGER AS $$
+DECLARE
+  personagem_tipo_correto INTEGER;
+BEGIN
+  SELECT COUNT(*) INTO personagem_tipo_correto
+  FROM personagem
+  WHERE nome = NEW.nome_atacante;
+
+  IF personagem_tipo_correto = 0 THEN
+    RAISE EXCEPTION 'Esse personagem ainda não está na tabela personagem';
+  ELSE
+    IF (SELECT tipo FROM personagem WHERE nome = NEW.nome_atacante) != 'atacante' THEN
+      RAISE EXCEPTION 'Esse personagem não é do tipo atacante';
+    END IF;
+  END IF;
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE TRIGGER valida_tipo_atacante
+BEFORE INSERT ON atacante
+FOR EACH ROW
+EXECUTE FUNCTION valida_tipo_atacante();
+-- --------------------------------------------------------------------------
+-- ==========================================================================
