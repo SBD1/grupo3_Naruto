@@ -12,3 +12,4 @@ ADD CREATE-BD.sql /docker-entrypoint-initdb.d
 ADD DDL-BD.sql /docker-entrypoint-initdb.d
 ADD insertions.sql /docker-entrypoint-initdb.d
 ADD Trigger_and_Procedures.sql /docker-entrypoint-initdb.d
+ADD transaction.sql /docker-entrypoint-initdb.d
