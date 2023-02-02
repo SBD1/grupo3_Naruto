@@ -48,7 +48,7 @@ Para entrar no container do banco de dados (postgres):
   	docker exec -it game_db_1 psql -U postgres
     
 Depois, para entrar na database do jogo, utilize:
-
+    psql -U postgres
   	\c naruto;
 
 ## Apresentação 2
