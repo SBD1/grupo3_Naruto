@@ -22,7 +22,8 @@ def initial_menu():
         print('3 - ve regiao regiao')
         print('4 - Procurar item na regiao')
         print('5 - Aprender Jutsu')
-        print('6 - Vẽ as Views de Inimigo e PersonagemPrincipal')
+        print('6 - Vẽ as batalhas realizadas')
+        print('7 - Vẽ as Views de Inimigo e PersonagemPrincipal')
         print('0 - Sair')
         tecla = input('Insira sua escolha: ')
         print()
@@ -54,6 +55,23 @@ def initial_menu():
                     print(item['nome'])
                 entradajutsu=input('qual jutsu quer aprender? :')
                 run_insert(f"INSERT INTO sabe_jutsu(nome_jutsu,nome_atacante) VALUES('{entradajutsu}','{player_name}');")
+        elif tecla=='6':
+            print('Listando todos os Personagem Principais')
+            dp=run_query_fetchall(f"SELECT * from dados_personagem")
+            for item in dp:
+                print(item)
+            sleep(5)
+            print('Listando todos os Inimigos')
+            di=run_query_fetchall(f"SELECT * from dados_inimigo")
+            for item in di:
+                print(item)
+            sleep(5)
+        elif tecla=='7':
+            print('Listando todas as batalhas')
+            db=run_query_fetchall(f"SELECT * from dados_batalha")
+            for item in db:
+                print(item)
+            sleep(5)
         elif tecla == '0':
             exit_game()
             return
