@@ -42,14 +42,19 @@ BEGIN
   SELECT COUNT(*) INTO item_tipo_correto
   FROM item
   WHERE nome = NEW.nome_item;
+ 
   IF item_tipo_correto = 0 THEN
-    RAISE EXCEPTION 'Item ainda não presente na tabela de itens. Por favor insira um item válido na tabela itens antes de inserir na tabela cura.';
+    RAISE EXCEPTION 'Item ainda não presente na tabela de itens. Por favor insira um item válido na tabela item antes de inserir na tabela cura.';
+  ELSE
+    IF (SELECT tipo FROM item WHERE nome = NEW.nome_item) != 'cura' THEN
+      RAISE EXCEPTION 'Esse item não é do tipo cura';
+    END IF;
   END IF;
   RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER valida_tipo_cura
+CREATE OR REPLACE TRIGGER valida_tipo_cura
 BEFORE INSERT ON cura
 FOR EACH ROW
 EXECUTE FUNCTION valida_tipo_cura();
@@ -66,12 +71,16 @@ BEGIN
   WHERE nome = NEW.nome_item;
   IF item_tipo_correto = 0 THEN
     RAISE EXCEPTION 'Item ainda não presente na tabela de itens. Por favor insira um item válido na tabela itens antes de inserir na tabela ataque.';
+  ELSE
+    IF (SELECT tipo FROM item WHERE nome = NEW.nome_item) != 'ataque' THEN
+      RAISE EXCEPTION 'Esse item não é do tipo ataque';
+    END IF;
   END IF;
   RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER valida_tipo_ataque
+CREATE OR REPLACE TRIGGER valida_tipo_ataque
 BEFORE INSERT ON ataque
 FOR EACH ROW
 EXECUTE FUNCTION valida_tipo_ataque();
@@ -88,12 +97,16 @@ BEGIN
   WHERE nome = NEW.nome_item;
   IF item_tipo_correto = 0 THEN
     RAISE EXCEPTION 'Item ainda não presente na tabela de itens. Por favor insira um item válido na tabela itens antes de inserir na tabela defesa.';
+  ELSE
+    IF (SELECT tipo FROM item WHERE nome = NEW.nome_item) != 'defesa' THEN
+      RAISE EXCEPTION 'Esse item não é do tipo defesa';
+    END IF;
   END IF;
   RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER valida_tipo_defesa
+CREATE OR REPLACE TRIGGER valida_tipo_defesa
 BEFORE INSERT ON defesa
 FOR EACH ROW
 EXECUTE FUNCTION valida_tipo_defesa();
@@ -110,12 +123,16 @@ BEGIN
   WHERE nome = NEW.nome_item;
   IF item_tipo_correto = 0 THEN
     RAISE EXCEPTION 'Item ainda não presente na tabela de itens. Por favor insira um item válido na tabela itens antes de inserir na tabela chakra.';
+  ELSE
+    IF (SELECT tipo FROM item WHERE nome = NEW.nome_item) != 'chakra' THEN
+      RAISE EXCEPTION 'Esse item não é do tipo chakra';
+    END IF;
   END IF;
   RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER valida_tipo_chakra
+CREATE OR REPLACE TRIGGER valida_tipo_chakra
 BEFORE INSERT ON chakra
 FOR EACH ROW
 EXECUTE FUNCTION valida_tipo_chakra();
@@ -144,7 +161,7 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER valida_tipo_entregador_missao
+CREATE OR REPLACE TRIGGER valida_tipo_entregador_missao
 BEFORE INSERT ON entregador_missao
 FOR EACH ROW
 EXECUTE FUNCTION valida_tipo_entregador_missao();
