@@ -5,7 +5,7 @@ CREATE DATABASE naruto;
 CREATE TYPE tipo_personagem as enum ('atacante', 'entregador_de_missao');
 CREATE TYPE tipo_atacante as enum ('personagem_principal', 'inimigo');
 CREATE TYPE tipo_item as enum ('cura', 'ataque', 'defesa', 'chakra');
-CREATE TYPE tipo_resultado as enum ('vitoria', 'derrota', 'empate');
+CREATE TYPE tipo_resultado as enum ('vitoria', 'derrota');
 
 
 CREATE TABLE IF NOT EXISTS regiao(
@@ -208,7 +208,7 @@ CREATE TABLE IF NOT EXISTS batalha(
   nome_personagem_principal VARCHAR(40),
   nome_inimigo VARCHAR(40),
   id_instancia_inimigo INTEGER,
-  finalizada boolean default false,
+  finalizada BOOLEAN DEFAULT FALSE,
 
   CONSTRAINT batalha_pk PRIMARY KEY(id),
   CONSTRAINT batalha_personagem_principal_fk FOREIGN KEY (nome_personagem_principal) REFERENCES personagem_principal (nome_personagem),
