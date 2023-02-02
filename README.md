@@ -51,6 +51,10 @@ Depois, para entrar na database do jogo, utilize:
 
   	\c naruto;
 
+## Apresentação 3
+
+https://user-images.githubusercontent.com/40813329/216220502-bb18001e-471a-4f10-a7e5-63a928d806f0.mp4
+
 ## Apresentação 2
 
 https://user-images.githubusercontent.com/40813329/212797084-462b9571-4c6e-402d-9181-25d8d70db9e4.mp4
