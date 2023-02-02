@@ -18,7 +18,7 @@ CREATE OR REPLACE VIEW dados_personagem AS
     INNER JOIN atacante ON (personagem.nome = atacante.nome_atacante)
     INNER JOIN personagem_principal ON (personagem.nome = personagem_principal.nome_personagem);
 
-SELECT * FROM dados_personagem;
+-- SELECT * FROM dados_personagem;
 
 -- View dos dados completos do inimigo
 CREATE OR REPLACE VIEW dados_inimigo AS
@@ -41,7 +41,7 @@ CREATE OR REPLACE VIEW dados_inimigo AS
     INNER JOIN inimigo ON atacante.nome_atacante = inimigo.nome_inimigo
     INNER JOIN instancia_inimigo ON inimigo.nome_inimigo = instancia_inimigo.nome_inimigo;
 
-SELECT * FROM dados_inimigo;
+-- SELECT * FROM dados_inimigo;
 
 -- View dos dados completos de itens
 CREATE OR REPLACE VIEW dados_item AS
@@ -55,7 +55,7 @@ CREATE OR REPLACE VIEW dados_item AS
     FROM item
     INNER JOIN instancia_item ON item.nome = instancia_item.nome_item;
 
-SELECT * FROM dados_item;
+-- SELECT * FROM dados_item;
 
 -- View sobre informações de batalha
 CREATE OR REPLACE VIEW dados_batalha AS
@@ -67,4 +67,4 @@ CREATE OR REPLACE VIEW dados_batalha AS
     batalha.id_instancia_inimigo AS "ID Instância Inimigo"
     FROM batalha;
 
-SELECT * FROM dados_batalha;
+-- SELECT * FROM dados_batalha;
