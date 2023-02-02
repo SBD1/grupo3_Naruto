@@ -33,19 +33,19 @@ Depois, é preciso dar build e subir o container:
 
 Para entrar no container do jogo e realizar alterações, execute:
 
-  	docker exec game_game_1 -it /bin/bash
+  	docker exec -it game_game_1 /bin/bash
 
 ## Executável
 
 Para executar a main do jogo e vê-lo em execução:
 
-  	docker exec game_game_1 -it python3 main.py
+  	docker exec -it game_game_1 python3 main.py
 
 ## Banco de Dados
 
 Para entrar no container do banco de dados (postgres):
 
-  	docker exec game_db_1 -it psql -U postgres
+  	docker exec -it game_db_1 psql -U postgres
     
 Depois, para entrar na database do jogo, utilize:
 
