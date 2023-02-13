@@ -20,7 +20,7 @@ def initial_menu():
         print('1 - Criar novo jogo')
         print('2 - Mudar regiao')
         print('3 - ve regiao regiao')
-        print('4 - Procurar item na regiao')
+        print('4 - Procurar na regiao')
         print('5 - Aprender Jutsu')
         print('6 - View de Inimigo e PersonagemPrincipal')
         print('7 - View as batalhas realizadas')
@@ -43,6 +43,7 @@ def initial_menu():
         elif tecla == '3':
             personagem= run_query_fetchone(f"SELECT * from personagem where nome='{playerData['nome']}'")
             print(personagem)
+            sleep(10)
         elif tecla== '4':
             input4=input('Procurar lutador(1)|Procurar item(2)')
             if input4== '1':
@@ -111,7 +112,6 @@ def batalha(player_name):
     query_response_instancia_inimigo = run_query_fetchone(f"SELECT * from instancia_inimigo where nome_regiao='{playerData['nome_regiao']}'")
     query_response = run_query_fetchall(f"SELECT * from atacante where nome_atacante='{query_response_instancia_inimigo['nome_inimigo']}'")
     playerData=run_query_fetchone(f"SELECT * from atacante WHERE nome_atacante='{player_name}'")
-    breakpoint()
     print('lista de lutadores')
     for item in query_response:
         print(item['nome_atacante'])
@@ -132,7 +132,6 @@ def batalha(player_name):
         jogador=TupleObject(*jogador)
         while(inimigo.vida>=0 and jogador.vida>=0):
             startfight=datetime.now()
-            breakpoint()
             entrada=input('Ataque normal(1) e ataque de chakra(2)')
             if entrada=='1':
                 jogador.vida=jogador.vida-inimigo.ataque
@@ -142,7 +141,6 @@ def batalha(player_name):
                 for item in query_sabe_jutsu:
                     print(item)
                 inputJutsu= input("Digite o nome do jutsu que deseja usar: ")
-                breakpoint()
                 query_sabe_jutsu=run_query_fetchone(f"SELECT * FROM jutsu where nome='{inputJutsu}'")
                 jogador.vida=jogador.vida-inimigo.ataque
                 inimigo.vida=inimigo.vida-query_sabe_jutsu['dano']
